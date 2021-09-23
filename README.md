@@ -1,8 +1,8 @@
 # VB.C
 ## Visual Basic-like syntax for C
 
-The whole project is just a single header file with bunc of macros.
-Do you want to declare a function pointer,
+The whole project is just a single header file with a bunch of macros. 
+Do you want to declare a function pointer, 
 well then `DECLARE(FUNCTION_POINTER( fp OF (args) ) AS return_type )`
 
 ---
@@ -61,9 +61,9 @@ ENDFUNCTION
 ```
 function pointer
 ```VB
-DECLARE(FUNCTION_POINTER( fp OF (int, int) ) AS return_type );
+DECLARE(FUNCTION_POINTER( fp OF (int, int) ) AS unsigned long );
 // OR
-DECLARE(FUNCTION_POINTER( fp OF (DECLARE(AS int), DECLARE(AS int)) ) AS return_type );
+DECLARE(FUNCTION_POINTER( fp OF (DECLARE(AS int), DECLARE(AS int)) ) AS unsigned long );
 ```
 struct:
 ```VB
