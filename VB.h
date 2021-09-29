@@ -20,6 +20,7 @@
 
 #define AS ,
 #define OF ,
+#define OFSIZE ,
 
 #define ___DECLARE(var, type) type var
 #define DECLARE(var_AS_type) ___DECLARE(var_AS_type)
@@ -28,6 +29,9 @@
 
 #define ___CAST(exp, type) ((type) (exp))
 #define CAST(expression_AS_type) ___CAST(expression_AS_type)
+
+#define ___ARRAY(name, size) name[size]
+#define ARRAY(name_OF_SIZE_size) ARRAY(name_OF_SIZE_size) 
 
 #define ___FUNCTION(name, args, type) ___DECLARE(name args, type)
 #define FUNCTION(name_OF_args_AS_type) ___FUNCTION(name_OF_args_AS_type)
