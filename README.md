@@ -9,18 +9,23 @@ well then `DECLARE(FUNCTION_POINTER( fp OF (args) ) AS return_type )`
 ##### syntax:
 declaration of variable:
 ```VB
-DECLARE(a AS int);
-DECLARE(b AS char const) = 'X';
+DECLARE(a AS int*); // int* a;
+DECLARE(b AS char const) = 'X'; char const b;
+```
+declaration of array:
+```VB
+DECLARE(ARRAY( arr OF_SIZE N ) AS int); // int arr[N];
+DECLARE(ARRAY(ARRAY( matrix OF_SIZE I) OF_SIZE J) AS int); // int matrix[I][J];
 ```
 cast:
 ```VB
-CAST(n AS double) / k
+CAST(n AS double) / k // ((double)n) / k
 ```
 variable scope:
 ```VB
-SCOPE
-    DECLARE(a AS int);
-ENDSCOPE
+SCOPE                  // {
+    DECLARE(a AS int); //     int a;
+ENDSCOPE               // }
 ```
 if:
 ```VB
@@ -53,7 +58,7 @@ ENDDO
 ```
 function
 ```VB
-static FUNCTION( log OF (DECLARE(message AS char*)) AS void );
+PRIVATE FUNCTION( log OF (DECLARE(message AS char*)) AS void ); // PRIVATE is translation unit private
 FUNCTION( main OF (DECLARE(argc AS int), DECLARE(argv AS char**)) AS int )
 STARTFUNCTION
     log("Hello World");
@@ -76,3 +81,7 @@ STRUCT (LinkedListNode)
     ) ) AS bool );
 ENDSTRUCT
 ```
+
+
+Pointers to arrays, and other such shenanigans, are not supported  
+// pointer to array would be `int (*a)[N];`
