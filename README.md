@@ -81,3 +81,7 @@ STRUCT (LinkedListNode)
     ) ) AS bool );
 ENDSTRUCT
 ```
+
+
+Pointers to arrays, and other such shenanigans, are not supported  
+// pointer to array would be `int (*a)[N];`
