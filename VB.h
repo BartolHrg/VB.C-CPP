@@ -44,3 +44,5 @@
 #define STRUCT(name) typedef struct name name; struct name {
 #define ENDSTRUCT };
 
+#define RETURN return
+#define EXTERNAL extern
