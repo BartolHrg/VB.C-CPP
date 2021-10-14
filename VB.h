@@ -45,4 +45,5 @@
 #define ENDSTRUCT };
 
 #define RETURN return
+
 #define DEFINE_LATER extern
