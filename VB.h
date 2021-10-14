@@ -45,4 +45,4 @@
 #define ENDSTRUCT };
 
 #define RETURN return
-#define EXTERNAL extern
+#define DEFINE_LATER extern

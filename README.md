@@ -9,7 +9,7 @@ well then `DECLARE(FUNCTION_POINTER( fp OF (args) ) AS return_type )`
 ##### syntax:
 declaration of variable:
 ```VB
-DECLARE(a AS int*); // int* a;
+DEFINE_LATER DECLARE(a AS int*); // extern int* a;
 DECLARE(b AS char const) = 'X'; char const b;
 ```
 declaration of array:
