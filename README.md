@@ -75,7 +75,7 @@ DECLARE(FUNCTION_POINTER( fp OF (DECLARE(AS int), DECLARE(AS int)) ) AS unsigned
 ```
 struct & enum:
 ```VB
-STRUCT (LinkedListNode)
+STRUCT( LinkedListNode )
 STARTSTRUCT
     DECLARE(data AS void*);
     DECLARE(next AS LinkedListNode*);
@@ -84,7 +84,7 @@ STARTSTRUCT
         DECLARE(item AS LinkedListNode*)
     ) ) AS bool );
 ENDSTRUCT
-ENUM (DaysOfWeek) 
+ENUM( DaysOfWeek ) 
 STARTENUM
     Monday, 
     ...
@@ -105,15 +105,15 @@ With some added functionality
 class & template:
 ```VB
 TEMPLATE <TYPENAME T>
-CLASS (LinkedList)
+CLASS( LinkedList )
 STARTCLASS
     PRIVATE:
-        DECLARE (head AS LinkedListNode*);
-        STATIC FUNCTION (createFromArray OF (DECLARE(size AS int), DECLARE(arr AS T*)) AS LinkedList<T>*);
+        DECLARE( head AS LinkedListNode* );
+        STATIC FUNCTION( createFromArray OF (DECLARE(size AS int), DECLARE(arr AS T*)) AS LinkedList<T>* );
     PROTECTED:
     PUBLIC:
         FRIEND FUNCTION ...
-        FUNCTION (OPERATOR << OF (DECLARE(item AS T)) AS bool);
+        FUNCTION( OPERATOR << OF (DECLARE(item AS T)) AS bool );
 ENDCLASS
 ```
 namespace:
