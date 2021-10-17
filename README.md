@@ -1,12 +1,14 @@
-# VB.C
-## Visual Basic-like syntax for C
+# VB.C/C++
+## Visual Basic-like syntax for C/C++
 
-The whole project is just a single header file with a bunch of macros.  
+The whole project are just 2 header files with a bunch of macros.  
 Do you want to declare a function pointer,   
 well then `DECLARE(FUNCTION_POINTER( fp OF (args) ) AS return_type )`
 
 ---
-##### syntax:
+## syntax:
+### VB.C
+
 declaration of variable:
 ```VB
 DEFINE_LATER DECLARE(a AS int*); // extern int* a;
@@ -92,3 +94,36 @@ ENDENUM
 
 Pointers to arrays, and other such shenanigans, are not supported  
 // pointer to array would be `int (*a)[N];`
+
+
+---
+### VB.C++
+
+Everything from VB.C applies here  
+With some added functionality
+
+class & template:
+```VB
+TEMPLATE <TYPENAME T>
+CLASS (LinkedList)
+STARTCLASS
+    PRIVATE:
+        DECLARE (head AS LinkedListNode*);
+        STATIC FUNCTION (createFromArray OF (DECLARE(size AS int), DECLARE(arr AS T*)) AS LinkedList<T>*);
+    PROTECTED:
+    PUBLIC:
+        FRIEND FUNCTION ...
+        FUNCTION (OPERATOR << OF (DECLARE(item AS T)) AS bool);
+ENDCLASS
+```
+namespace:
+```VB
+NAMESPACE LinkedListNMSP 
+STARTNAMESPACE
+    ...
+ENDNAMESPACE
+```
+using:
+```VB
+USING NAMESPACE std;
+```
