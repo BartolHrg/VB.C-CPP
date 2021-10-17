@@ -23,7 +23,7 @@
 
 #define AS ,
 #define OF ,
-#define OFSIZE ,
+#define OF_SIZE ,
 
 #define ___DECLARE(var, type) type var
 #define DECLARE(var_AS_type) ___DECLARE(var_AS_type)
