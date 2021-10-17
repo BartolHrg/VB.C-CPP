@@ -28,7 +28,9 @@
 #define ___DECLARE(var, type) type var
 #define DECLARE(var_AS_type) ___DECLARE(var_AS_type)
 
-#define PRIVATE static
+#define GLOBAL_PRIVATE static
+
+#define LOCAL_DEFINE_ONCE static
 
 #define ___CAST(exp, type) ((type) (exp))
 #define CAST(expression_AS_type) ___CAST(expression_AS_type)

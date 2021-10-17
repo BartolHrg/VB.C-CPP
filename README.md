@@ -58,10 +58,11 @@ ENDDO
 ```
 function
 ```VB
-PRIVATE FUNCTION( log OF (DECLARE(message AS char*)) AS void ); // PRIVATE is translation unit private
+GLOBAL_PRIVATE FUNCTION( log OF (DECLARE(message AS char*)) AS void ); // GLOBAL_PRIVATE is translation unit private (static)
 FUNCTION( main OF (DECLARE(argc AS int), DECLARE(argv AS char**)) AS int )
 STARTFUNCTION
-    log("Hello World");
+    LOCAL_DEFINE_ONCE DECLARE(counter AS int) = 0;
+    log("Hello World %d", counter++);
 ENDFUNCTION
 ```
 function pointer
