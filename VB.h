@@ -1,3 +1,6 @@
+#ifndef VB_H
+#define VB_H
+
 #define IF if (
 #define THEN ) {
 #define ELSEIF } else if (
@@ -47,3 +50,6 @@
 #define RETURN return
 
 #define DEFINE_LATER extern
+
+#endif
+
