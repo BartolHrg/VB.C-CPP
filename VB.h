@@ -46,8 +46,13 @@
 #define ___FUNCTION_POINTER(name, args) (*name) args
 #define FUNCTION_POINTER(name_OF_args) ___FUNCTION_POINTER(name_OF_args)
 
-#define STRUCT(name) typedef struct name name; struct name {
+#define STRUCT(name) typedef struct name name; struct name 
+#define STARTSTRUCT {
 #define ENDSTRUCT };
+
+#define ENUM(name) typedef enum name name; enum name 
+#define STARTENUM {
+#define ENDENUM };
 
 #define RETURN return
 

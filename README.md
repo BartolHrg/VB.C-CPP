@@ -71,9 +71,10 @@ DECLARE(FUNCTION_POINTER( fp OF (int, int) ) AS unsigned long );
 // OR
 DECLARE(FUNCTION_POINTER( fp OF (DECLARE(AS int), DECLARE(AS int)) ) AS unsigned long );
 ```
-struct:
+struct & enum:
 ```VB
 STRUCT (LinkedListNode)
+STARTSTRUCT
     DECLARE(data AS void*);
     DECLARE(next AS LinkedListNode*);
     DECLARE(FUNCTION_POINTER( insertAfter OF (
@@ -81,6 +82,11 @@ STRUCT (LinkedListNode)
         DECLARE(item AS LinkedListNode*)
     ) ) AS bool );
 ENDSTRUCT
+ENUM (DaysOfWeek) 
+STARTENUM
+    Monday, 
+    ...
+ENDENUM
 ```
 
 

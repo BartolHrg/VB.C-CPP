@@ -4,12 +4,13 @@
 #include "VB.h"
 
 #undef STRUCT
-#define STRUCT(name) struct name {
+#define STRUCT(name) struct name 
 
 #undef ENUM
-#define ENUM(name) enum name {
+#define ENUM(name) enum name 
     
-#define CLASS(name) class name {
+#define CLASS(name) class name 
+#define STARTCLASS {
 #define ENDCLASS };
 
 #define NAMESPACE namespace
