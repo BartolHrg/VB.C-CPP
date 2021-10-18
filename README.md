@@ -127,3 +127,13 @@ using:
 ```VB
 USING NAMESPACE std;
 ```
+try catch:
+```VB
+TRY
+    THROW std::runtime_error("error");
+CATCH DECLARE( e AS std::exception const& ) DOTHIS
+    ...
+CATCHALL DOTHIS
+    ...
+ENDTRY
+```

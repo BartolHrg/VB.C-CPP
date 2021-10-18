@@ -19,6 +19,12 @@
 
 #define USING using
 
+#define TRY try {
+#define CATCH } catch (
+#define CATCHALL } catch (...
+#define ENDTRY }
+#define THROW throw
+
 #define TEMPLATE template
 #define TYPENAME typename
 
