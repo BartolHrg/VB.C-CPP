@@ -90,6 +90,11 @@ STARTENUM
     ...
 ENDENUM
 ```
+typedef:
+```VB
+TYPEDEF(MyName AS int);
+```
+
 
 
 Pointers to arrays, and other such shenanigans, are not supported  

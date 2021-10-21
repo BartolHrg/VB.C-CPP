@@ -28,6 +28,8 @@
 #define ___DECLARE(var, type) type var
 #define DECLARE(var_AS_type) ___DECLARE(var_AS_type)
 
+#define TYPEDEF(name_AS_type) typedef ___DECLARE(name_AS_type)
+
 #define GLOBAL_PRIVATE static
 
 #define LOCAL_DEFINE_ONCE static
