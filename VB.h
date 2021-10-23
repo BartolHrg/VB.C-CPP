@@ -54,7 +54,7 @@
 #define LOCAL_DEFINE_ONCE static
 
 #define __VB_C_CPP_CAST(exp, type) ((type) (exp))
-#define CAST(expression_AS_type) __VB_C_CPP_CAST(expression_AS_type)
+#define CAST(expression_AS_type) __VB_C_CPP_CAST(expression_AS_type))
 
 #define __VB_C_CPP_ARRAY(name, size) name[size]
 #define ARRAY(name_OF_SIZE_size) __VB_C_CPP_ARRAY(name_OF_SIZE_size) 
