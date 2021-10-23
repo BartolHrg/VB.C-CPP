@@ -38,15 +38,15 @@
 #define SCOPE {
 #define END_SCOPE }
 
-#define AS ,
+#define AS , (
 #define OF ,
 #define OF_SIZE ,
 
-#define __VB_C_CPP_DECL(var, type) type var
+#define __VB_C_CPP_DECL(var, type) __VB_C_CPP_ARGS type var
 #define DECL __VB_C_CPP_DECL __VB_C_CPP_LB
-#define END __VB_C_CPP_RB
+#define END ) __VB_C_CPP_RB
 
-#define __VB_C_CPP_TYPEDEF(name, type) typedef type name;
+#define __VB_C_CPP_TYPEDEF(name, type) typedef __VB_C_CPP_ARGS type name;
 #define TYPEDEF __VB_C_CPP_TYPEDEF __VB_C_CPP_LB
 
 #define GLOBAL_PRIVATE static
@@ -61,8 +61,8 @@
 
 #define __VB_C_CPP_FUNCTION(name, args, type) __VB_C_CPP_DECL(name args, type)
 #define FUNCTION __VB_C_CPP_FUNCTION __VB_C_CPP_LB
-#define END_FUNC_DECL __VB_C_CPP_RB;
-#define START_FUNCTION __VB_C_CPP_RB {
+#define END_FUNC_DECL ) __VB_C_CPP_RB;
+#define START_FUNCTION ) __VB_C_CPP_RB {
 #define END_FUNCTION }
 
 #define __VB_C_CPP_FUNCTION_POINTER(name, args) (*name) args

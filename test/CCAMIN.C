@@ -6,7 +6,7 @@ typedef int F(void);
 
 typedef int (*FP)(void);
 
-TYPEDEF_FUNC FP OF (void) AS int END
+TYPEDEF FUNCTION_POINTER( FP OF (void) ) AS int END
 
 
 
