@@ -66,7 +66,7 @@ DO
 ALL_THE_WHILE a < 10 END_DO
 ```
 for:  
-syntax is `FOR (decl), cond, step START_FOR code END_FOR  
+syntax is `FOR (decl), cond, step START_FOR code END_FOR`  
 decl has to be in parentheses; things are separated with commas  
 it is possible to declare multiple variables  
 ```VB
