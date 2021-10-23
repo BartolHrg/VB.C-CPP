@@ -119,7 +119,7 @@ ENDENUM
 ```
 typedef:
 ```VB
-TYPEDEF(MyName AS int);
+TYPEDEF MyName AS int END
 ```
 
 
