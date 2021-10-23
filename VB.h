@@ -7,6 +7,7 @@
 #define __VB_C_CPP_ARGS(...) __VA_ARGS__
 
 #define __VB_C_CPP_LB (
+#define __VB_C_CPP_RB )
 
 #define IF if (
 #define THEN ) {
@@ -18,20 +19,20 @@
 #define START_WHILE ) {
 #define END_WHILE }
 
-#define __VB_C_CPP_DO(CODE, COND) while (true) { CODE if (COND) break; }
+#define __VB_C_CPP_DO(CODE, COND) while (1) { CODE if (!(COND)) break; }
 #define DO __VB_C_CPP_DO __VB_C_CPP_LB
 #define ALL_THE_WHILE , (
-#define END_DO ))
+#define END_DO ) __VB_C_CPP_RB
 
-#define __VB_C_CPP_FOR(DECL, COND, STEP, CODE) { ARGS DECL while (COND) { CODE STEP } }
+#define __VB_C_CPP_FOR(DECL, COND, STEP, CODE) { __VB_C_CPP_ARGS DECL while (COND) { CODE STEP } }
 #define FOR __VB_C_CPP_FOR __VB_C_CPP_LB
 #define START_FOR , {
-#define END_FOR })
+#define END_FOR } __VB_C_CPP_RB
 
-#define __VB_C_CPP_PREFOR(DECL, STEP, COND, CODE) { ARGS DECL STEP while (COND) { CODE STEP } }
+#define __VB_C_CPP_PREFOR(DECL, STEP, COND, CODE) { __VB_C_CPP_ARGS DECL STEP while (COND) { CODE STEP } }
 #define PREFOR __VB_C_CPP_PREFOR __VB_C_CPP_LB
 #define START_PREFOR , {
-#define END_PREFOR })
+#define END_PREFOR } __VB_C_CPP_RB
 
 
 #define SCOPE {
@@ -43,10 +44,10 @@
 
 #define __VB_C_CPP_DECL(var, type) type var
 #define DECL __VB_C_CPP_DECL __VB_C_CPP_LB
-#define END )
+#define END __VB_C_CPP_RB
 
-#define __VB_C_CPP_TYPEDEF (name, type) typedef type name;
-#define TYPEDEF __VB_C_CPP_DECL __VB_C_CPP_LB
+#define __VB_C_CPP_TYPEDEF(name, type) typedef type name;
+#define TYPEDEF __VB_C_CPP_TYPEDEF __VB_C_CPP_LB
 
 #define GLOBAL_PRIVATE static
 
@@ -56,12 +57,12 @@
 #define CAST(expression_AS_type) __VB_C_CPP_CAST(expression_AS_type)
 
 #define __VB_C_CPP_ARRAY(name, size) name[size]
-#define ARRAY(name_OF_SIZE_size) ARRAY(name_OF_SIZE_size) 
+#define ARRAY(name_OF_SIZE_size) __VB_C_CPP_ARRAY(name_OF_SIZE_size) 
 
 #define __VB_C_CPP_FUNCTION(name, args, type) __VB_C_CPP_DECL(name args, type)
 #define FUNCTION __VB_C_CPP_FUNCTION __VB_C_CPP_LB
-#define END_FUNCDECL );
-#define START_FUNCTION ) {
+#define END_FUNC_DECL __VB_C_CPP_RB;
+#define START_FUNCTION __VB_C_CPP_RB {
 #define END_FUNCTION }
 
 #define __VB_C_CPP_FUNCTION_POINTER(name, args) (*name) args
@@ -72,12 +73,12 @@
 #define STRUCT __VB_C_CPP_STRUCT __VB_C_CPP_LB
 #define STRUCT_CONST __VB_C_CPP_STRUCT_CONST __VB_C_CPP_LB 
 #define START_STRUCT , {
-#define END_STRUCT })
+#define END_STRUCT } __VB_C_CPP_RB
 
-#define __VB_C_CPP_ENUM(name, body) typedef enum name name; enum name body;
+#define __VB_C_CPP_ENUM(name, body) typedef enum name name; enum name __VB_C_CPP_ARGS body;
 #define ENUM __VB_C_CPP_ENUM __VB_C_CPP_LB
-#define START_ENUM , {
-#define END_ENUM })
+#define START_ENUM , ({
+#define END_ENUM }) __VB_C_CPP_RB
 
 #define RETURN return
 

@@ -4,15 +4,24 @@
 #include "VB.h"
 
 #undef __VB_C_CPP_STRUCT
-#define __VB_C_CPP_STRUCT(name, body) struct name body;
 #undef __VB_C_CPP_STRUCT_CONST
-#define __VB_C_CPP_STRUCT_CONST(name, body) const struct name
+#undef STRUCT
+#undef STRUCT_CONST
+#undef START_STRUCT
+#undef END_STRUCT
+#define STRUCT struct
+#define START_STRUCT {
+#define END_STRUCT };
 
 #undef __VB_C_CPP_ENUM
-#define __VB_C_CPP_ENUM(name, body) enum class name 
+#undef ENUM
+#undef START_ENUM
+#undef END_ENUM
+#define ENUM enum class
+#define START_ENUM {
+#define END_ENUM };
     
-#define CLASS(name) class name 
-#define CLASS_CONST(name) const class name
+#define CLASS class 
 #define START_CLASS {
 #define END_CLASS };
 

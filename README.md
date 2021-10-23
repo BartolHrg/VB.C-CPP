@@ -9,7 +9,8 @@ well then `DECL FUNCTION_POINTER( fp OF (args) ) AS return_type END`
 ## syntax:
 
 Important!!  
-Whole file should be surrounded by VB_C_CPP_FILE macro  
+Whole file excluding #includes should be surrounded by VB_C_CPP_FILE macro  
+// actually, probably only #includes that use VB.H, but better be safe than sorry  
 ```c
 #include "VB.h"
 VB_C_CPP_FILE(
@@ -56,6 +57,14 @@ START_WHILE
     printf(...);
 END_WHILE
 ```
+do:  
+variables declared inside are visible in condition
+```VB
+DO
+    DECL a AS int END = 100;
+    printf(...);
+ALL_THE_WHILE a < 10 END_DO
+```
 for:  
 syntax is `FOR (decl), cond, step START_FOR code END_FOR  
 decl has to be in parentheses; things are separated with commas  
@@ -75,22 +84,17 @@ START_PREFOR
     printf(...);
 END_PREFOR
 ```
-do:  
-variables declared inside are visible in condition
-```VB
-DO
-    DECL a AS int END = 100;
-    printf(...);
-ALL_THE_WHILE a < 10
-END_DO
-```
 function
 ```VB
-GLOBAL_PRIVATE FUNCTION log OF (DECL message AS char* END, ...) AS void END_FUNCDECL // GLOBAL_PRIVATE is translation unit private (static)
+GLOBAL_PRIVATE FUNCTION myLog OF (DECL message AS char* END, ...) AS void END_FUNC_DECL // GLOBAL_PRIVATE is translation unit private (static)
 FUNCTION main OF (DECL argc AS int END, DECL argv AS char** END) AS int
 START_FUNCTION
+    myLog(); myLog(); 
+END_FUNCTION
+FUNCTION myLog OF (DECL message AS char* END, ...) AS void
+START_FUNCTION
     LOCAL_DEFINE_ONCE DECL counter AS int END = 0;
-    log("Hello World %d", counter++);
+    printf("#%d ", counter++); printf(message, __VA_ARGS__);
 END_FUNCTION
 ```
 function pointer
@@ -142,11 +146,11 @@ CLASS LinkedList
 START_CLASS
     PRIVATE:
         DECL head AS LinkedListNode* END;
-        STATIC FUNCTION createFromArray OF (DECL size AS int END, DECL arr AS T* END) AS LinkedList<T>* END_FUNCDECL
+        STATIC FUNCTION createFromArray OF (DECL size AS int END, DECL arr AS T* END) AS LinkedList<T>* END_FUNC_DECL
     PROTECTED:
     PUBLIC:
         FRIEND FUNCTION ...
-        FUNCTION OPERATOR << OF (DECL item AS T END) AS bool END_FUNCDECL
+        FUNCTION OPERATOR << OF (DECL item AS T END) AS bool END_FUNC_DECL
 END_CLASS
 // also there is CLASS_CONST (google "const struct declaration")
 ```
