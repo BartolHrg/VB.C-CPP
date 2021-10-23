@@ -1,0 +1,27 @@
+
+I'm unhappy because enums are not scoped
+and I cannot fix it
+
+ARRAY & FUNCTION_POINTER declarations should remain in parens
+because it would make confusion with all the nested ENDs
+
+Maybe OF_SIZE should be 2 words (not)
+
+FUNCTION_POINTER could be without parens around args (using varargs)
+but that wouldn't be compatible with FUNCTION and maybe wouldn't look nice
+
+Maybe add DO versions of FORs
+
+SCOPE
+    maybe add START_SCOPE { and make SCOPE empty
+    maybe remove SCOPE
+    maybe add optional name (need SCOPE & START_SCOPE)
+
+can we include .h file after .hpp
+    if not, that maybe can be handled in VB_C_CPP_FILE
+    we can !
+    ?
+
+I don't want to #define new & delete
+idk y
+ 
