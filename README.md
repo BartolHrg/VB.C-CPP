@@ -165,9 +165,9 @@ try catch:
 ```VB
 TRY
     THROW std::runtime_error("error");
-CATCH DECL e AS std::exception const& END DOTHIS
+CATCH e AS std::exception const& DO_THIS
     ...
-CATCH_ALL DOTHIS
-    ...
+CATCH_ALL
+    THROW;
 END_TRY
 ```

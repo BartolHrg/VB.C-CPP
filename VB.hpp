@@ -23,11 +23,11 @@
 #define USING using
 
 #define TRY try {
-#define CATCH } catch (
-#define CATCH_ALL } catch (...
+#define CATCH } catch (DECL
+#define DO_THIS END) {
+#define CATCH_ALL } catch (...) {
 #define END_TRY }
 #define THROW throw
-#define DOTHIS ) {
 
 #define TEMPLATE template
 #define TYPENAME typename
