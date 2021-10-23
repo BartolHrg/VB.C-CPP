@@ -10,32 +10,32 @@
 
 #define IF if (
 #define THEN ) {
-#define ELSEIF } else if (
+#define ELSE_IF } else if (
 #define ELSE } else {
-#define ENDIF }
+#define END_IF }
 
 #define WHILE while (
-#define STARTWHILE ) {
-#define ENDWHILE }
+#define START_WHILE ) {
+#define END_WHILE }
 
 #define __VB_C_CPP_DO(CODE, COND) while (true) { CODE if (COND) break; }
 #define DO __VB_C_CPP_DO __VB_C_CPP_LB
-#define ALLTHEWHILE , (
-#define ENDDO ))
+#define ALL_THE_WHILE , (
+#define END_DO ))
 
 #define __VB_C_CPP_FOR(DECL, COND, STEP, CODE) { ARGS DECL while (COND) { CODE STEP } }
 #define FOR __VB_C_CPP_FOR __VB_C_CPP_LB
-#define STARTFOR , {
-#define ENDFOR })
+#define START_FOR , {
+#define END_FOR })
 
 #define __VB_C_CPP_PREFOR(DECL, STEP, COND, CODE) { ARGS DECL STEP while (COND) { CODE STEP } }
 #define PREFOR __VB_C_CPP_PREFOR __VB_C_CPP_LB
-#define STARTPREFOR , {
-#define ENDPREFOR })
+#define START_PREFOR , {
+#define END_PREFOR })
 
 
 #define SCOPE {
-#define ENDSCOPE }
+#define END_SCOPE }
 
 #define AS ,
 #define OF ,
@@ -60,9 +60,9 @@
 
 #define __VB_C_CPP_FUNCTION(name, args, type) __VB_C_CPP_DECL(name args, type)
 #define FUNCTION __VB_C_CPP_FUNCTION __VB_C_CPP_LB
-#define ENDFUNCDECL );
-#define STARTFUNCTION ) {
-#define ENDFUNCTION }
+#define END_FUNCDECL );
+#define START_FUNCTION ) {
+#define END_FUNCTION }
 
 #define __VB_C_CPP_FUNCTION_POINTER(name, args) (*name) args
 #define FUNCTION_POINTER(name_OF_args) __VB_C_CPP_FUNCTION_POINTER(name_OF_args)
@@ -71,13 +71,13 @@
 #define __VB_C_CPP_STRUCT_CONST(name, body) typedef const struct name name; const struct name body;
 #define STRUCT __VB_C_CPP_STRUCT __VB_C_CPP_LB
 #define STRUCT_CONST __VB_C_CPP_STRUCT_CONST __VB_C_CPP_LB 
-#define STARTSTRUCT , {
-#define ENDSTRUCT })
+#define START_STRUCT , {
+#define END_STRUCT })
 
 #define __VB_C_CPP_ENUM(name, body) typedef enum name name; enum name body;
 #define ENUM __VB_C_CPP_ENUM __VB_C_CPP_LB
-#define STARTENUM , {
-#define ENDENUM })
+#define START_ENUM , {
+#define END_ENUM })
 
 #define RETURN return
 

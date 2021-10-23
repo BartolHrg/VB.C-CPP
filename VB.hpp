@@ -13,19 +13,19 @@
     
 #define CLASS(name) class name 
 #define CLASS_CONST(name) const class name
-#define STARTCLASS {
-#define ENDCLASS };
+#define START_CLASS {
+#define END_CLASS };
 
 #define NAMESPACE namespace
-#define STARTNAMESPACE {
-#define ENDNAMESPACE }
+#define START_NAMESPACE {
+#define END_NAMESPACE }
 
 #define USING using
 
 #define TRY try {
 #define CATCH } catch (
-#define CATCHALL } catch (...
-#define ENDTRY }
+#define CATCH_ALL } catch (...
+#define END_TRY }
 #define THROW throw
 #define DOTHIS ) {
 

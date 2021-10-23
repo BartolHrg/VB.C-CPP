@@ -37,43 +37,43 @@ variable scope:
 ```VB
 SCOPE                  // {
     DECL a AS int END; //     int a;
-ENDSCOPE               // }
+END_SCOPE              // }
 ```
 if:
 ```VB
 IF 0 <= a && a < 10 THEN
     printf(...);
-ELSEIF -10 < a THEN
+ELSE_IF -10 < a THEN
     printf(...);
 ELSE
     printf(...);
-ENDIF
+END_IF
 ```
 while:
 ```VB
 WHILE a < 10
-STARTWHILE
+START_WHILE
     printf(...);
-ENDWHILE
+END_WHILE
 ```
 for:  
-syntax is `FOR (decl), cond, step STARTFOR code ENDFOR  
+syntax is `FOR (decl), cond, step START_FOR code END_FOR  
 decl has to be in parentheses; things are separated with commas  
 it is possible to declare multiple variables  
 ```VB
 FOR (DECL a AS int END = 0; DECL j AS unsigned END;), a < 10, ++a;
-STARTFOR
+START_FOR
     printf(...);
-ENDFOR
+END_FOR
 ```
 prefor:  
 syntax is similar to for (cond & step are in different order)  
 like for, but executes step before cond  
 ```VB
 PREFOR (DECL c AS char END), c = getchar();, c != EOF
-STARTPREFOR
+START_PREFOR
     printf(...);
-ENDPREFOR
+END_PREFOR
 ```
 do:  
 variables declared inside are visible in condition
@@ -81,17 +81,17 @@ variables declared inside are visible in condition
 DO
     DECL a AS int END = 100;
     printf(...);
-ALLTHEWHILE a < 10
-ENDDO
+ALL_THE_WHILE a < 10
+END_DO
 ```
 function
 ```VB
-GLOBAL_PRIVATE FUNCTION log OF (DECL message AS char*), ...) AS void ENDFUNCDECL // GLOBAL_PRIVATE is translation unit private (static END
+GLOBAL_PRIVATE FUNCTION log OF (DECL message AS char* END, ...) AS void END_FUNCDECL // GLOBAL_PRIVATE is translation unit private (static)
 FUNCTION main OF (DECL argc AS int END, DECL argv AS char** END) AS int
-STARTFUNCTION
+START_FUNCTION
     LOCAL_DEFINE_ONCE DECL counter AS int END = 0;
     log("Hello World %d", counter++);
-ENDFUNCTION
+END_FUNCTION
 ```
 function pointer
 ```VB
@@ -102,19 +102,19 @@ DECL FUNCTION_POINTER( fp OF (DECL AS int END, DECL AS int END) ) AS unsigned lo
 struct & enum:
 ```VB
 STRUCT LinkedListNode 
-STARTSTRUCT
+START_STRUCT
     DECL data AS void* END;
     DECL next AS LinkedListNode* END;
     DECL FUNCTION_POINTER( insertAfter OF (
         DECL this AS LinkedListNode* END, 
         DECL item AS LinkedListNode* END
     ) ) AS bool END;
-ENDSTRUCT
+END_STRUCT
 ENUM DaysOfWeek
-STARTENUM
+START_ENUM
     Monday, 
     ...
-ENDENUM
+END_ENUM
 // also there is STRUCT_CONST (& CLASS_CONST in C++) (google "const struct declaration")
 ```
 typedef:
@@ -139,23 +139,23 @@ class & template:
 ```VB
 TEMPLATE <TYPENAME T>
 CLASS LinkedList
-STARTCLASS
+START_CLASS
     PRIVATE:
         DECL head AS LinkedListNode* END;
-        STATIC FUNCTION createFromArray OF (DECL size AS int END, DECL arr AS T* END) AS LinkedList<T>* ENDFUNCDECL
+        STATIC FUNCTION createFromArray OF (DECL size AS int END, DECL arr AS T* END) AS LinkedList<T>* END_FUNCDECL
     PROTECTED:
     PUBLIC:
         FRIEND FUNCTION ...
-        FUNCTION OPERATOR << OF (DECL item AS T END) AS bool ENDFUNCDECL
-ENDCLASS
+        FUNCTION OPERATOR << OF (DECL item AS T END) AS bool END_FUNCDECL
+END_CLASS
 // also there is CLASS_CONST (google "const struct declaration")
 ```
 namespace:
 ```VB
 NAMESPACE LinkedListNMSP 
-STARTNAMESPACE
+START_NAMESPACE
     ...
-ENDNAMESPACE
+END_NAMESPACE
 ```
 using:
 ```VB
@@ -167,7 +167,7 @@ TRY
     THROW std::runtime_error("error");
 CATCH DECL e AS std::exception const& END DOTHIS
     ...
-CATCHALL DOTHIS
+CATCH_ALL DOTHIS
     ...
-ENDTRY
+END_TRY
 ```
