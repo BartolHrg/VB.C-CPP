@@ -54,3 +54,7 @@ dkms.conf
 # my
 .vscode/*
 test/*
+!test/*.c
+!test/*.h
+!test/*.cpp
+!test/*.hpp
