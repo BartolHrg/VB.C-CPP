@@ -3,13 +3,16 @@
 
 #include "VB.h"
 
-#undef STRUCT
-#define STRUCT(name) struct name 
+#undef ___STRUCT
+#define ___STRUCT(name, body) struct name body;
+#undef ___STRUCT_CONST
+#define ___STRUCT_CONST(name, body) const struct name
 
-#undef ENUM
-#define ENUM(name) enum name 
+#undef ___ENUM
+#define ___ENUM(name, body) enum class name 
     
 #define CLASS(name) class name 
+#define CLASS_CONST(name) const class name
 #define STARTCLASS {
 #define ENDCLASS };
 

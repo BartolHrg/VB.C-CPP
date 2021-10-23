@@ -1,22 +1,38 @@
 #ifndef VB_H
 #define VB_H
 
+
+#define VB_C_CPP_FILE(...) __VA_ARGS__
+
+#define ARGS(...) __VA_ARGS__
+
+#define ___LB (
+
 #define IF if (
 #define THEN ) {
 #define ELSEIF } else if (
 #define ELSE } else {
 #define ENDIF }
 
-#define DO do {
-#define ALLTHEWHILE } while (
-#define ENDDO );
-
 #define WHILE while (
-#define DOTHIS ) {
+#define STARTWHILE ) {
 #define ENDWHILE }
 
-#define FOR for (
-#define ENDFOR }
+#define ___DO(CODE, COND) while (true) { CODE if (COND) break; }
+#define DO ___DO ___LB
+#define ALLTHEWHILE , (
+#define ENDDO ))
+
+#define ___FOR(DECL, COND, STEP, CODE) { ARGS DECL while (COND) { CODE STEP } }
+#define FOR ___FOR ___LB
+#define STARTFOR , {
+#define ENDFOR })
+
+#define ___PREFOR(DECL, STEP, COND, CODE) { ARGS DECL STEP while (COND) { CODE STEP } }
+#define PREFOR ___PREFOR ___LB
+#define STARTPREFOR , {
+#define ENDPREFOR })
+
 
 #define SCOPE {
 #define ENDSCOPE }
@@ -41,20 +57,25 @@
 #define ARRAY(name_OF_SIZE_size) ARRAY(name_OF_SIZE_size) 
 
 #define ___FUNCTION(name, args, type) ___DECLARE(name args, type)
-#define FUNCTION(name_OF_args_AS_type) ___FUNCTION(name_OF_args_AS_type)
-#define STARTFUNCTION {
+#define FUNCTION ___FUNCTION ___LB
+#define ENDFUNCDECL );
+#define STARTFUNCTION ) {
 #define ENDFUNCTION }
 
 #define ___FUNCTION_POINTER(name, args) (*name) args
 #define FUNCTION_POINTER(name_OF_args) ___FUNCTION_POINTER(name_OF_args)
 
-#define STRUCT(name) typedef struct name name; struct name 
-#define STARTSTRUCT {
-#define ENDSTRUCT };
+#define ___STRUCT(name, body) typedef struct name name; struct name body;
+#define ___STRUCT_CONST(name, body) typedef const struct name name; const struct name body;
+#define STRUCT ___STRUCT ___LB
+#define STRUCT_CONST ___STRUCT_CONST ___LB 
+#define STARTSTRUCT , {
+#define ENDSTRUCT })
 
-#define ENUM(name) typedef enum name name; enum name 
-#define STARTENUM {
-#define ENDENUM };
+#define ___ENUM(name, body) typedef enum name name; enum name body;
+#define ENUM ___ENUM ___LB
+#define STARTENUM , {
+#define ENDENUM })
 
 #define RETURN return
 

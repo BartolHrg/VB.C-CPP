@@ -7,6 +7,16 @@ well then `DECLARE(FUNCTION_POINTER( fp OF (args) ) AS return_type )`
 
 ---
 ## syntax:
+
+Important!!  
+Whole file should be surrounded by VB_C_CPP_FILE macro  
+```c
+#include "VB.h"
+VB_C_CPP_FILE(
+code in file
+)
+```
+
 ### VB.C
 
 declaration of variable:
@@ -41,27 +51,43 @@ ENDIF
 ```
 while:
 ```VB
-WHILE a < 10 DOTHIS
+WHILE a < 10
+STARTWHILE
     printf(...);
 ENDWHILE
 ```
-for:
+for:  
+syntax is `FOR (decl), cond, step STARTFOR code ENDFOR  
+decl has to be in parentheses; things are separated with commas  
+it is possible to declare multiple variables  
 ```VB
-FOR DECLARE(a AS int) = 0; a < 10; ++a DOTHIS
+FOR (DECLARE(a AS int) = 0; DECLARE(j AS unsigned);), a < 10, ++a;
+STARTFOR
     printf(...);
 ENDFOR
 ```
-do:
+prefor:  
+syntax is similar to for (cond & step are in different order)  
+like for, but executes step before cond  
+```VB
+PREFOR (DECLARE(c AS char)), c = getchar();, c != EOF
+STARTPREFOR
+    printf(...);
+ENDPREFOR
+```
+do:  
+variables declared inside are visible in condition
 ```VB
 DO
+    DECLARE( a AS int ) = 100;
     printf(...);
 ALLTHEWHILE a < 10
 ENDDO
 ```
 function
 ```VB
-GLOBAL_PRIVATE FUNCTION( log OF (DECLARE(message AS char*), ...) AS void ); // GLOBAL_PRIVATE is translation unit private (static)
-FUNCTION( main OF (DECLARE(argc AS int), DECLARE(argv AS char**)) AS int )
+GLOBAL_PRIVATE FUNCTION log OF (DECLARE(message AS char*), ...) AS void ENDFUNCDECL // GLOBAL_PRIVATE is translation unit private (static)
+FUNCTION main OF (DECLARE(argc AS int), DECLARE(argv AS char**)) AS int
 STARTFUNCTION
     LOCAL_DEFINE_ONCE DECLARE(counter AS int) = 0;
     log("Hello World %d", counter++);
@@ -75,7 +101,7 @@ DECLARE(FUNCTION_POINTER( fp OF (DECLARE(AS int), DECLARE(AS int)) ) AS unsigned
 ```
 struct & enum:
 ```VB
-STRUCT( LinkedListNode )
+STRUCT LinkedListNode 
 STARTSTRUCT
     DECLARE(data AS void*);
     DECLARE(next AS LinkedListNode*);
@@ -84,11 +110,12 @@ STARTSTRUCT
         DECLARE(item AS LinkedListNode*)
     ) ) AS bool );
 ENDSTRUCT
-ENUM( DaysOfWeek ) 
+ENUM DaysOfWeek
 STARTENUM
     Monday, 
     ...
 ENDENUM
+// also there is STRUCT_CONST (& CLASS_CONST in C++) (google "const struct declaration")
 ```
 typedef:
 ```VB
@@ -110,16 +137,17 @@ With some added functionality
 class & template:
 ```VB
 TEMPLATE <TYPENAME T>
-CLASS( LinkedList )
+CLASS LinkedList
 STARTCLASS
     PRIVATE:
         DECLARE( head AS LinkedListNode* );
-        STATIC FUNCTION( createFromArray OF (DECLARE(size AS int), DECLARE(arr AS T*)) AS LinkedList<T>* );
+        STATIC FUNCTION createFromArray OF (DECLARE(size AS int), DECLARE(arr AS T*)) AS LinkedList<T>* ENDFUNCDECL
     PROTECTED:
     PUBLIC:
         FRIEND FUNCTION ...
-        FUNCTION( OPERATOR << OF (DECLARE(item AS T)) AS bool );
+        FUNCTION OPERATOR << OF (DECLARE(item AS T)) AS bool ENDFUNCDECL
 ENDCLASS
+// also there is CLASS_CONST (google "const struct declaration")
 ```
 namespace:
 ```VB
