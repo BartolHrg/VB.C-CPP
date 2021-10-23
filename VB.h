@@ -4,9 +4,9 @@
 
 #define VB_C_CPP_FILE(...) __VA_ARGS__
 
-#define ARGS(...) __VA_ARGS__
+#define __VB_C_CPP_ARGS(...) __VA_ARGS__
 
-#define ___LB (
+#define __VB_C_CPP_LB (
 
 #define IF if (
 #define THEN ) {
@@ -18,18 +18,18 @@
 #define STARTWHILE ) {
 #define ENDWHILE }
 
-#define ___DO(CODE, COND) while (true) { CODE if (COND) break; }
-#define DO ___DO ___LB
+#define __VB_C_CPP_DO(CODE, COND) while (true) { CODE if (COND) break; }
+#define DO __VB_C_CPP_DO __VB_C_CPP_LB
 #define ALLTHEWHILE , (
 #define ENDDO ))
 
-#define ___FOR(DECL, COND, STEP, CODE) { ARGS DECL while (COND) { CODE STEP } }
-#define FOR ___FOR ___LB
+#define __VB_C_CPP_FOR(DECL, COND, STEP, CODE) { ARGS DECL while (COND) { CODE STEP } }
+#define FOR __VB_C_CPP_FOR __VB_C_CPP_LB
 #define STARTFOR , {
 #define ENDFOR })
 
-#define ___PREFOR(DECL, STEP, COND, CODE) { ARGS DECL STEP while (COND) { CODE STEP } }
-#define PREFOR ___PREFOR ___LB
+#define __VB_C_CPP_PREFOR(DECL, STEP, COND, CODE) { ARGS DECL STEP while (COND) { CODE STEP } }
+#define PREFOR __VB_C_CPP_PREFOR __VB_C_CPP_LB
 #define STARTPREFOR , {
 #define ENDPREFOR })
 
@@ -41,39 +41,39 @@
 #define OF ,
 #define OF_SIZE ,
 
-#define ___DECLARE(var, type) type var
-#define DECLARE(var_AS_type) ___DECLARE(var_AS_type)
+#define __VB_C_CPP_DECLARE(var, type) type var
+#define DECLARE(var_AS_type) __VB_C_CPP_DECLARE(var_AS_type)
 
-#define TYPEDEF(name_AS_type) typedef ___DECLARE(name_AS_type)
+#define TYPEDEF(name_AS_type) typedef __VB_C_CPP_DECLARE(name_AS_type)
 
 #define GLOBAL_PRIVATE static
 
 #define LOCAL_DEFINE_ONCE static
 
-#define ___CAST(exp, type) ((type) (exp))
-#define CAST(expression_AS_type) ___CAST(expression_AS_type)
+#define __VB_C_CPP_CAST(exp, type) ((type) (exp))
+#define CAST(expression_AS_type) __VB_C_CPP_CAST(expression_AS_type)
 
-#define ___ARRAY(name, size) name[size]
+#define __VB_C_CPP_ARRAY(name, size) name[size]
 #define ARRAY(name_OF_SIZE_size) ARRAY(name_OF_SIZE_size) 
 
-#define ___FUNCTION(name, args, type) ___DECLARE(name args, type)
-#define FUNCTION ___FUNCTION ___LB
+#define __VB_C_CPP_FUNCTION(name, args, type) __VB_C_CPP_DECLARE(name args, type)
+#define FUNCTION __VB_C_CPP_FUNCTION __VB_C_CPP_LB
 #define ENDFUNCDECL );
 #define STARTFUNCTION ) {
 #define ENDFUNCTION }
 
-#define ___FUNCTION_POINTER(name, args) (*name) args
-#define FUNCTION_POINTER(name_OF_args) ___FUNCTION_POINTER(name_OF_args)
+#define __VB_C_CPP_FUNCTION_POINTER(name, args) (*name) args
+#define FUNCTION_POINTER(name_OF_args) __VB_C_CPP_FUNCTION_POINTER(name_OF_args)
 
-#define ___STRUCT(name, body) typedef struct name name; struct name body;
-#define ___STRUCT_CONST(name, body) typedef const struct name name; const struct name body;
-#define STRUCT ___STRUCT ___LB
-#define STRUCT_CONST ___STRUCT_CONST ___LB 
+#define __VB_C_CPP_STRUCT(name, body) typedef struct name name; struct name body;
+#define __VB_C_CPP_STRUCT_CONST(name, body) typedef const struct name name; const struct name body;
+#define STRUCT __VB_C_CPP_STRUCT __VB_C_CPP_LB
+#define STRUCT_CONST __VB_C_CPP_STRUCT_CONST __VB_C_CPP_LB 
 #define STARTSTRUCT , {
 #define ENDSTRUCT })
 
-#define ___ENUM(name, body) typedef enum name name; enum name body;
-#define ENUM ___ENUM ___LB
+#define __VB_C_CPP_ENUM(name, body) typedef enum name name; enum name body;
+#define ENUM __VB_C_CPP_ENUM __VB_C_CPP_LB
 #define STARTENUM , {
 #define ENDENUM })
 
