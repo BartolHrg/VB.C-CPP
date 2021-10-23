@@ -45,7 +45,8 @@
 #define DECL __VB_C_CPP_DECL __VB_C_CPP_LB
 #define END )
 
-#define TYPEDEF(name_AS_type) typedef __VB_C_CPP_DECL(name_AS_type)
+#define __VB_C_CPP_TYPEDEF (name, type) typedef type name;
+#define TYPEDEF __VB_C_CPP_DECL __VB_C_CPP_LB
 
 #define GLOBAL_PRIVATE static
 
