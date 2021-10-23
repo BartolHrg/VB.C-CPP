@@ -1,5 +1,5 @@
 
-I'm unhappy because enums are not scoped
+I'm unhappy because enums are not scoped (in C only)
 and I cannot fix it
 
 ARRAY & FUNCTION_POINTER declarations should remain in parens
