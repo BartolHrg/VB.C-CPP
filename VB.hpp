@@ -27,6 +27,7 @@
 #define CATCHALL } catch (...
 #define ENDTRY }
 #define THROW throw
+#define DOTHIS ) {
 
 #define TEMPLATE template
 #define TYPENAME typename

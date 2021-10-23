@@ -41,10 +41,11 @@
 #define OF ,
 #define OF_SIZE ,
 
-#define __VB_C_CPP_DECLARE(var, type) type var
-#define DECLARE(var_AS_type) __VB_C_CPP_DECLARE(var_AS_type)
+#define __VB_C_CPP_DECL(var, type) type var
+#define DECL __VB_C_CPP_DECL __VB_C_CPP_LB
+#define END )
 
-#define TYPEDEF(name_AS_type) typedef __VB_C_CPP_DECLARE(name_AS_type)
+#define TYPEDEF(name_AS_type) typedef __VB_C_CPP_DECL(name_AS_type)
 
 #define GLOBAL_PRIVATE static
 
@@ -56,7 +57,7 @@
 #define __VB_C_CPP_ARRAY(name, size) name[size]
 #define ARRAY(name_OF_SIZE_size) ARRAY(name_OF_SIZE_size) 
 
-#define __VB_C_CPP_FUNCTION(name, args, type) __VB_C_CPP_DECLARE(name args, type)
+#define __VB_C_CPP_FUNCTION(name, args, type) __VB_C_CPP_DECL(name args, type)
 #define FUNCTION __VB_C_CPP_FUNCTION __VB_C_CPP_LB
 #define ENDFUNCDECL );
 #define STARTFUNCTION ) {
