@@ -33,6 +33,7 @@
 #define FOREACH __VB_C_CPP_FOREACH __VB_C_CPP_LB
 #define START_FOREACH , {
 #define END_FOREACH } __VB_C_CPP_RB
+#define IN ,
 
 #define USING using
 
