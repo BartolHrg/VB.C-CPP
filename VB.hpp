@@ -9,6 +9,7 @@
 #undef STRUCT_CONST
 #undef START_STRUCT
 #undef END_STRUCT
+#define __VB_C_CPP_STRUCT(name, body) struct name body;
 #define STRUCT struct
 #define START_STRUCT {
 #define END_STRUCT };
@@ -17,6 +18,7 @@
 #undef ENUM
 #undef START_ENUM
 #undef END_ENUM
+#define __VB_C_CPP_ENUM(name, body) enum class name body;
 #define ENUM enum class
 #define START_ENUM {
 #define END_ENUM };
