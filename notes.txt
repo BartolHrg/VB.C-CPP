@@ -25,5 +25,6 @@ can we include .h file after .hpp
 I don't want to #define new & delete
 idk y
  
- TYPEDEF looks like it's missing ;, but it doesn't
- 
+TYPEDEF looks like it's missing ;, but it doesn't
+
+should I add AND OR (XOR, NOR, NAND, NXOR)
