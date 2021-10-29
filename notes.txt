@@ -30,3 +30,6 @@ TYPEDEF looks like it's missing ;, but it doesn't
 should I add AND OR (XOR, NOR, NAND, NXOR)
 
 i should add support for c++ initializations... when I figure them out
+
+why do FOR and PREFOR need to have parens
+    they don't. ?
