@@ -74,7 +74,7 @@ be careful with semicolons
 ```VB
 FOR DECL a AS int END = 0; DECL j AS unsigned END;, 
     a < 10, 
-    ++a;
+    ++a;,
 START_FOR
     printf(...);
 END_FOR
@@ -86,7 +86,7 @@ like for, but executes step before cond
 PREFOR 
     DECL c AS char END;, 
     c = getchar();, 
-    c != EOF
+    c != EOF,
 START_PREFOR
     printf(...);
 END_PREFOR
