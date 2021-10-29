@@ -10,7 +10,7 @@ well then `DECL FUNCTION_POINTER( fp OF (args) ) AS return_type END`
 
 Important!!  
 Whole file excluding #includes should be surrounded by VB_C_CPP_FILE macro  
-// actually, probably only #includes that use VB.H, but better be safe than sorry  
+// actually, probably only #includes that use VB.H(PP), but better be safe than sorry  
 ```c
 #include "VB.h"
 VB_C_CPP_FILE(
@@ -23,7 +23,7 @@ code in file
 declaration of variable:
 ```VB
 DEFINE_LATER DECL a AS int* END; // extern int* a;
-DECL b AS char const END = 'X'; // char const b;
+DECL b AS char const END = 'X'; // char const b = 'X';
 ```
 declaration of array:
 ```VB
@@ -69,6 +69,7 @@ for:
 syntax is `FOR (decl), cond, step START_FOR code END_FOR`  
 decl has to be in parentheses; things are separated with commas  
 it is possible to declare multiple variables  
+be careful with semicolons  
 ```VB
 FOR (DECL a AS int END = 0; DECL j AS unsigned END;), a < 10, ++a;
 START_FOR
@@ -79,7 +80,7 @@ prefor:
 syntax is similar to for (cond & step are in different order)  
 like for, but executes step before cond  
 ```VB
-PREFOR (DECL c AS char END), c = getchar();, c != EOF
+PREFOR (DECL c AS char END;), c = getchar();, c != EOF
 START_PREFOR
     printf(...);
 END_PREFOR
@@ -91,10 +92,10 @@ FUNCTION main OF (DECL argc AS int END, DECL argv AS char** END) AS int
 START_FUNCTION
     myLog(); myLog(); 
 END_FUNCTION
-FUNCTION myLog OF (DECL message AS char* END, ...) AS void
+GLOBAL_PRIVATE FUNCTION myLog OF (DECL message AS char* END, ...) AS void
 START_FUNCTION
     LOCAL_DEFINE_ONCE DECL counter AS int END = 0;
-    printf("#%d ", counter++); printf(message, __VA_ARGS__);
+    printf("#%d ", counter++); // printf(message, __VA_ARGS__);
 END_FUNCTION
 ```
 function pointer
@@ -119,11 +120,12 @@ START_ENUM
     Monday, 
     ...
 END_ENUM
-// also there is STRUCT_CONST (& CLASS_CONST in C++) (google "const struct declaration")
+// also there is STRUCT_CONST (google "const struct declaration") (but not in c++?)
 ```
 typedef:
 ```VB
 TYPEDEF MyName AS int END
+TYPEDEF FUNCTION_POINTER( CommonFunction OF (int, int) ) AS int END
 ```
 
 
@@ -152,7 +154,6 @@ START_CLASS
         FRIEND FUNCTION ...
         FUNCTION OPERATOR << OF (DECL item AS T END) AS bool END_FUNC_DECL
 END_CLASS
-// also there is CLASS_CONST (google "const struct declaration")
 ```
 namespace:
 ```VB
