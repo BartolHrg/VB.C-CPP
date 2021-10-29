@@ -72,7 +72,8 @@ it is possible to declare multiple variables
 and to have however complicated statements in decl and step
 be careful with semicolons  
 ```VB
-FOR DECL a AS int END = 0; DECL j AS unsigned END;, 
+FOR 
+    DECL a AS int END = 0; DECL j AS unsigned END;, 
     a < 10, 
     ++a;,
 START_FOR
