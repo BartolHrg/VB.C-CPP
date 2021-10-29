@@ -66,12 +66,15 @@ DO
 ALL_THE_WHILE a < 10 END_DO
 ```
 for:  
-syntax is `FOR (decl), cond, step START_FOR code END_FOR`  
-decl has to be in parentheses; things are separated with commas  
+syntax is `FOR decl, cond, step START_FOR code END_FOR`  
+things are separated with commas  
 it is possible to declare multiple variables  
+and to have however complicated statements in decl and step
 be careful with semicolons  
 ```VB
-FOR (DECL a AS int END = 0; DECL j AS unsigned END;), a < 10, ++a;
+FOR DECL a AS int END = 0; DECL j AS unsigned END;, 
+    a < 10, 
+    ++a;
 START_FOR
     printf(...);
 END_FOR
@@ -80,7 +83,10 @@ prefor:
 syntax is similar to for (cond & step are in different order)  
 like for, but executes step before cond  
 ```VB
-PREFOR (DECL c AS char END;), c = getchar();, c != EOF
+PREFOR 
+    DECL c AS char END;, 
+    c = getchar();, 
+    c != EOF
 START_PREFOR
     printf(...);
 END_PREFOR
@@ -120,7 +126,7 @@ START_ENUM
     Monday, 
     ...
 END_ENUM
-// also there is STRUCT_CONST (google "const struct declaration") (but not in c++?)
+// also there is STRUCT_CONST (& CLASS_CONST in C++) (google "const struct declaration")
 ```
 typedef:
 ```VB
