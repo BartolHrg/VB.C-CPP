@@ -58,3 +58,6 @@ test/*
 !test/*.h
 !test/*.cpp
 !test/*.hpp
+
+compiler/*
+VB_C_CPP/*
