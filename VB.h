@@ -62,6 +62,7 @@
 
 #define __VB_C_CPP_FP(name) (*name) 
 #define FP __VB_C_CPP_FP __VB_C_CPP_LB
+#define FUNCTION_POINTER
 
 #define __VB_C_CPP_STRUCT(name, body) typedef struct __VB_C_CPP_ARGS name __VB_C_CPP_ARGS name; struct __VB_C_CPP_ARGS name __VB_C_CPP_ARGS body;
 #define __VB_C_CPP_STRUCT_CONST(name, body) typedef const struct name name; const struct name body;
