@@ -19,9 +19,9 @@
 #define START_WHILE ) { 
 #define END_WHILE }
 
-#define __VB_C_CPP_DO(CODE, COND) while (1) { CODE if (!(COND)) break; }
-#define DO __VB_C_CPP_DO __VB_C_CPP_LB
-#define ALL_THE_WHILE , (
+#define __VB_C_CPP_DO(code, cond) while (1) { __VB_C_CPP_ARGS code if (!cond) break; }
+#define DO __VB_C_CPP_DO __VB_C_CPP_LB (
+#define ALL_THE_WHILE ), (
 #define END_DO ) __VB_C_CPP_RB
 
 #define __VB_C_CPP_FOR(decl, prep, cond, step, code) { decl __VB_C_CPP_ARGS prep while cond { __VB_C_CPP_ARGS code __VB_C_CPP_ARGS step __VB_C_CPP_ARGS prep } }
@@ -50,7 +50,7 @@
 
 #define LOCAL_DEFINE_ONCE static
 
-#define __VB_C_CPP_CAST(exp, type) ((type) (exp))
+#define __VB_C_CPP_CAST(exp, type) (type (exp))
 #define CAST(expression_AS_type) __VB_C_CPP_CAST(expression_AS_type))
 
 #define __VB_C_CPP_ARRAY(name, size) name[size]
@@ -65,16 +65,16 @@
 #define __VB_C_CPP_FUNCTION_POINTER(name, args) (*name) args
 #define FUNCTION_POINTER(name_OF_args) __VB_C_CPP_FUNCTION_POINTER(name_OF_args)
 
-#define __VB_C_CPP_STRUCT(name, body) typedef struct name name; struct name body;
+#define __VB_C_CPP_STRUCT(name, body) typedef struct __VB_C_CPP_ARGS name __VB_C_CPP_ARGS name; struct __VB_C_CPP_ARGS name __VB_C_CPP_ARGS body;
 #define __VB_C_CPP_STRUCT_CONST(name, body) typedef const struct name name; const struct name body;
-#define STRUCT __VB_C_CPP_STRUCT __VB_C_CPP_LB
-#define STRUCT_CONST __VB_C_CPP_STRUCT_CONST __VB_C_CPP_LB 
-#define START_STRUCT , {
-#define END_STRUCT } __VB_C_CPP_RB
+#define STRUCT __VB_C_CPP_STRUCT __VB_C_CPP_LB (
+#define STRUCT_CONST __VB_C_CPP_STRUCT_CONST __VB_C_CPP_LB (
+#define START_STRUCT ), ({
+#define END_STRUCT }) __VB_C_CPP_RB
 
-#define __VB_C_CPP_ENUM(name, body) typedef enum name name; enum name __VB_C_CPP_ARGS body;
-#define ENUM __VB_C_CPP_ENUM __VB_C_CPP_LB
-#define START_ENUM , ({
+#define __VB_C_CPP_ENUM(name, body) typedef enum __VB_C_CPP_ARGS name __VB_C_CPP_ARGS name; enum __VB_C_CPP_ARGS name __VB_C_CPP_ARGS body;
+#define ENUM __VB_C_CPP_ENUM __VB_C_CPP_LB (
+#define START_ENUM ), ({
 #define END_ENUM }) __VB_C_CPP_RB
 
 #define RETURN return

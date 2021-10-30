@@ -9,7 +9,7 @@
 #undef STRUCT_CONST
 #undef START_STRUCT
 #undef END_STRUCT
-#define __VB_C_CPP_STRUCT(name, body) struct name body;
+#define __VB_C_CPP_STRUCT(name, body) struct __VB_C_CPP_ARGS name __VB_C_CPP_ARGS body;
 #define STRUCT struct
 #define START_STRUCT {
 #define END_STRUCT };
@@ -18,7 +18,7 @@
 #undef ENUM
 #undef START_ENUM
 #undef END_ENUM
-#define __VB_C_CPP_ENUM(name, body) enum class name body;
+#define __VB_C_CPP_ENUM(name, body) enum class __VB_C_CPP_ARGS name __VB_C_CPP_ARGS body;
 #define ENUM enum class
 #define START_ENUM {
 #define END_ENUM };
@@ -31,11 +31,11 @@
 #define START_NAMESPACE {
 #define END_NAMESPACE }
 
-#define __VB_C_CPP_FOREACH(element, type, array, body) for (__VB_C_CPP_ARGS type element : array) body
-#define FOREACH __VB_C_CPP_FOREACH __VB_C_CPP_LB
-#define START_FOREACH , {
-#define END_FOREACH } __VB_C_CPP_RB
-#define IN ) ,
+#define __VB_C_CPP_FOREACH(element, type, array, body) for (__VB_C_CPP_ARGS type element : __VB_C_CPP_ARGS array) __VB_C_CPP_ARGS body
+#define FOREACH __VB_C_CPP_FOREACH __VB_C_CPP_LB 
+#define IN ), (
+#define START_FOREACH ), ({
+#define END_FOREACH }) __VB_C_CPP_RB
 
 #define USING using
 
