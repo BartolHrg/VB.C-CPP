@@ -32,7 +32,7 @@
 #define END_NAMESPACE }
 
 #define __VB_C_CPP_FOREACH(element, type, array, body) for (__VB_C_CPP_ARGS type element : __VB_C_CPP_ARGS array) __VB_C_CPP_ARGS body
-#define FOREACH __VB_C_CPP_FOREACH __VB_C_CPP_LB 
+#define FOREACH __VB_C_CPP_FOREACH __VB_C_CPP_LB __VB_C_CPP_ARGS __VB_C_CPP_LB
 #define IN ), (
 #define START_FOREACH ), ({
 #define END_FOREACH }) __VB_C_CPP_RB
