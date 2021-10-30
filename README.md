@@ -3,7 +3,7 @@
 
 The whole project are just 2 header files with a bunch of macros.  
 Do you want to declare a function pointer,   
-well then `DECL FUNCTION_POINTER( fp OF (args) ) AS return_type END`
+well then `DECL FUNCTION_POINTER fp OF (args) AS return_type END`
 
 ---
 ## syntax:
@@ -27,12 +27,12 @@ DECL b AS char const END = 'X'; // char const b = 'X';
 ```
 declaration of array:
 ```VB
-DECL ARRAY( arr OF_SIZE N ) AS int END; // int arr[N];
-DECL ARRAY(ARRAY( matrix OF_SIZE I) OF_SIZE J) AS int END; // int matrix[I][J];
+DECL arr AS int ARRAY [N] = {1, 1, REST_ALL_ZEROS}; // int arr[N] = {1,1,};
+DECL matrix AS int ARRAY [I][J] = ZERO_ARRAY; // int matrix[I][J] = {0};
 ```
 cast:
 ```VB
-CAST(n AS double) / k // ((double)n) / k
+CAST(n AS double) / k // ((double)(n)) / k
 ```
 variable scope:
 ```VB
@@ -71,9 +71,9 @@ it is possible to declare multiple variables
 and to have however complicated statements in decl, prep and step
 be careful with semicolons  
 ```VB
-FOR 
-    DECL i AS int END = 0; DECL c AS char END;
-    PREP c != '\0' 
+FOR DECL i AS int END = 0; DECL c AS char END;
+    PREP 
+    COND c != '\0'
     STEP ++i;
 START_FOR
     printf(...);
@@ -94,9 +94,9 @@ END_FUNCTION
 ```
 function pointer
 ```VB
-DECL FUNCTION_POINTER( fp OF (int, int) ) AS unsigned long END;
+DECL FP fp OF (int, int) AS unsigned long END;
 // OR
-DECL FUNCTION_POINTER( fp OF (DECL AS int END, DECL AS int END) ) AS unsigned long END;
+DECL FUNCTION_POINTER fp OF (DECL AS int END, DECL AS int END) AS unsigned long END;
 ```
 struct & enum:
 ```VB
@@ -119,12 +119,12 @@ END_ENUM
 typedef:
 ```VB
 TYPEDEF MyName AS int END
-TYPEDEF FUNCTION_POINTER( CommonFunction OF (int, int) ) AS int END
+TYPEDEF FUNCTION_POINTER CommonFunction OF (int, int) AS int END
 ```
 
 
 
-You cannot `DECLARE` multiple variables at once  
+You cannot `DECL` multiple variables at once  
 Pointers to arrays, and other such shenanigans, are not supported  
 // pointer to array would be `int (*a)[N];`
 
@@ -159,6 +159,13 @@ END_NAMESPACE
 using:
 ```VB
 USING NAMESPACE std;
+```
+foreach:
+```VB
+FOR_EACH elm AS auto& IN list
+START_FOR_EACH
+    ...
+END_FOR_EACH
 ```
 try catch:
 ```VB
