@@ -37,8 +37,6 @@
 #define START_FOREACH ), ({
 #define END_FOREACH }) __VB_C_CPP_RB
 
-#define USING using
-
 #define TRY try {
 #define CATCH } catch (DECL
 #define DO_THIS END) {
@@ -49,13 +47,15 @@
 #define TEMPLATE template
 #define TYPENAME typename
 
+#define USING using
+
 #define PRIVATE private
 #define PUBLIC public
 #define PROTECTED protected
 
-#define FRIEND friend
-
 #define STATIC static
+
+#define FRIEND friend
 
 #define OPERATOR operator 
 

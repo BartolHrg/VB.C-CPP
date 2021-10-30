@@ -36,25 +36,20 @@
 #define SCOPE {
 #define END_SCOPE }
 
-
 #define __VB_C_CPP_DECL2(var, type) __VB_C_CPP_ARGS type var
 #define __VB_C_CPP_DECL(var, type) __VB_C_CPP_DECL2( var, type)
 #define DECL __VB_C_CPP_DECL __VB_C_CPP_LB __VB_C_CPP_ARGS __VB_C_CPP_LB
 #define AS __VB_C_CPP_RB, (
 #define END ) __VB_C_CPP_RB
 
+#define ARRAY END
+
 #define __VB_C_CPP_TYPEDEF(name, type) typedef __VB_C_CPP_ARGS type name;
 #define TYPEDEF __VB_C_CPP_TYPEDEF __VB_C_CPP_LB __VB_C_CPP_ARGS __VB_C_CPP_LB
-
-#define GLOBAL_PRIVATE static
-
-#define LOCAL_DEFINE_ONCE static
 
 #define __VB_C_CPP_CAST(exp, type) (type exp)
 #define _CAST(expression_AS_type) __VB_C_CPP_CAST((expression_AS_type))
 #define CAST(...) __VB_C_CPP_CAST((__VA_ARGS__))
-
-#define ARRAY END
 
 #define __VB_C_CPP_FUNCTION(name_OF_args, type) __VB_C_CPP_DECL(name_OF_args, type)
 #define FUNCTION __VB_C_CPP_FUNCTION __VB_C_CPP_LB __VB_C_CPP_ARGS __VB_C_CPP_LB __VB_C_CPP_ARGS __VB_C_CPP_LB
@@ -81,6 +76,8 @@
 #define RETURN return
 
 #define DEFINE_LATER extern
+#define GLOBAL_PRIVATE static
+#define LOCAL_DEFINE_ONCE static
 
-#endif
+#endif // VB_H
 
