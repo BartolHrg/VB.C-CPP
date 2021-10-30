@@ -66,31 +66,18 @@ DO
 ALL_THE_WHILE a < 10 END_DO
 ```
 for:  
-syntax is `FOR decl, cond, step START_FOR code END_FOR`  
-things are separated with commas  
+syntax is `FOR decl PREP prep COND cond STEP step START_FOR code END_FOR`  
 it is possible to declare multiple variables  
-and to have however complicated statements in decl and step
+and to have however complicated statements in decl, prep and step
 be careful with semicolons  
 ```VB
 FOR 
-    DECL a AS int END = 0; DECL j AS unsigned END;, 
-    a < 10, 
-    ++a;,
+    DECL i AS int END = 0; DECL c AS char END;
+    PREP c != '\0' 
+    STEP ++i;
 START_FOR
     printf(...);
 END_FOR
-```
-prefor:  
-syntax is similar to for (cond & step are in different order)  
-like for, but executes step before cond  
-```VB
-PREFOR 
-    DECL c AS char END;, 
-    c = getchar();, 
-    c != EOF,
-START_PREFOR
-    printf(...);
-END_PREFOR
 ```
 function
 ```VB

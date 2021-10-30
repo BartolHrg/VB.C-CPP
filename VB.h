@@ -24,16 +24,13 @@
 #define ALL_THE_WHILE , (
 #define END_DO ) __VB_C_CPP_RB
 
-#define __VB_C_CPP_FOR(DECL, COND, STEP, _, CODE) { DECL while (COND) { CODE STEP } }
+#define __VB_C_CPP_FOR(decl, prep, cond, step, code) { decl __VB_C_CPP_ARGS prep while cond { __VB_C_CPP_ARGS code __VB_C_CPP_ARGS step __VB_C_CPP_ARGS prep } }
 #define FOR __VB_C_CPP_FOR __VB_C_CPP_LB
-#define START_FOR , {
-#define END_FOR } __VB_C_CPP_RB
-
-#define __VB_C_CPP_PREFOR(DECL, STEP, COND, _, CODE) { DECL STEP while (COND) { CODE STEP } }
-#define PREFOR __VB_C_CPP_PREFOR __VB_C_CPP_LB
-#define START_PREFOR , {
-#define END_PREFOR } __VB_C_CPP_RB
-
+#define PREP , (
+#define COND ), (
+#define STEP ), (
+#define START_FOR ), ({
+#define END_FOR }) __VB_C_CPP_RB
 
 #define SCOPE {
 #define END_SCOPE }
