@@ -43,6 +43,8 @@
 #define END ) __VB_C_CPP_RB
 
 #define ARRAY END
+#define ZERO_ARRAY {0}
+#define REST_ALL_ZEROS
 
 #define __VB_C_CPP_TYPEDEF(name, type) typedef __VB_C_CPP_ARGS type name;
 #define TYPEDEF __VB_C_CPP_TYPEDEF __VB_C_CPP_LB __VB_C_CPP_ARGS __VB_C_CPP_LB
