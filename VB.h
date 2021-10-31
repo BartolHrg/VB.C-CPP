@@ -81,10 +81,10 @@
 #define START_ENUM ), ({
 #define END_ENUM }) __VB_C_CPP_RB
 
-
 #define DEFINE_LATER extern
 #define GLOBAL_PRIVATE static
 #define LOCAL_DEFINE_ONCE static
+
 
 #endif // VB_H
 

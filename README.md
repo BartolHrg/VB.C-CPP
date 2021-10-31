@@ -72,7 +72,7 @@ and to have however complicated statements in decl, prep and step
 be careful with semicolons  
 ```VB
 FOR DECL i AS int END = 0; DECL c AS char END;
-    PREP 
+    PREP c = str[i];
     COND c != '\0'
     STEP ++i;
 START_FOR
