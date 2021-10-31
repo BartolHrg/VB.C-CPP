@@ -115,7 +115,6 @@ START_ENUM
     Monday, 
     ...
 END_ENUM
-// also there is STRUCT_CONST (& CLASS_CONST in C++) (google "const struct declaration")
 ```
 typedef:
 ```VB
