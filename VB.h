@@ -25,7 +25,7 @@
 #define ALL_THE_WHILE ), (
 #define END_DO ) __VB_C_CPP_RB
 
-#define __VB_C_CPP_FOR(decl, prep, cond, step, code) { decl __VB_C_CPP_ARGS prep while cond { __VB_C_CPP_ARGS code __VB_C_CPP_ARGS step __VB_C_CPP_ARGS prep } }
+#define __VB_C_CPP_FOR(decl, prep, cond, step, code) { decl while (1) { __VB_C_CPP_ARGS prep if (!cond) break; __VB_C_CPP_ARGS code __VB_C_CPP_ARGS step} }
 #define FOR __VB_C_CPP_FOR __VB_C_CPP_LB
 #define PREP , (
 #define COND ), (
