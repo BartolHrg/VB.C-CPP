@@ -33,6 +33,10 @@
 #define START_FOR ), ({
 #define END_FOR }) __VB_C_CPP_RB
 
+#define PASS 
+#define CONTINUE continue
+#define BREAK break
+
 #define SCOPE {
 #define END_SCOPE }
 
@@ -59,6 +63,7 @@
 #define END_FUNC_DECL ) __VB_C_CPP_RB;
 #define START_FUNCTION ) __VB_C_CPP_RB {
 #define END_FUNCTION }
+#define RETURN return
 
 #define __VB_C_CPP_FP(name) (*name) 
 #define FP __VB_C_CPP_FP __VB_C_CPP_LB
@@ -76,7 +81,6 @@
 #define START_ENUM ), ({
 #define END_ENUM }) __VB_C_CPP_RB
 
-#define RETURN return
 
 #define DEFINE_LATER extern
 #define GLOBAL_PRIVATE static

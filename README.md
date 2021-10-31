@@ -79,7 +79,8 @@ START_FOR
     printf(...);
 END_FOR
 ```
-function
+there are also `CONTINUE`, `BREAK`, `PASS` keywords (pass does nothing)
+function:
 ```VB
 GLOBAL_PRIVATE FUNCTION myLog OF (DECL message AS char* END, ...) AS void END_FUNC_DECL // GLOBAL_PRIVATE is translation unit private (static)
 FUNCTION main OF (DECL argc AS int END, DECL argv AS char** END) AS int
