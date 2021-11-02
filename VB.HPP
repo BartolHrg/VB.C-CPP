@@ -1,7 +1,7 @@
 #ifndef VB_HPP
 #define VB_HPP
 
-#include "VB.h"
+#include "VB.H"
 
 #undef __VB_C_CPP_STRUCT
 #undef __VB_C_CPP_STRUCT_CONST
