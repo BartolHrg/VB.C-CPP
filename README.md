@@ -12,7 +12,7 @@ Important!!
 Whole file excluding #includes should be surrounded by VB_C_CPP_FILE macro  
 // actually, probably only #includes that use VB.H(PP), but better be safe than sorry  
 ```c
-#include "VB.h"
+#include "VB.H"
 VB_C_CPP_FILE(
 code in file
 )
