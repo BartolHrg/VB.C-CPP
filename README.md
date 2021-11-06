@@ -50,20 +50,34 @@ ELSE
     printf(...);
 END_IF
 ```
-while:
+loop:  
+generic chained loop  
+It can have 0 or more `WHILE`s  
+and if there is code after `WHILE` there has to be `DO`  
 ```VB
-WHILE a < 10
-START_WHILE
-    printf(...);
-END_WHILE
-```
-do:  
-variables declared inside are visible in condition
-```VB
-DO
-    DECL a AS int END = 100;
-    printf(...);
-ALL_THE_WHILE a < 10 END_DO
+// chain
+LOOP 
+    DECL n AS int END = inputInt();
+WHILE n > 0 DO
+    printf("you entered %d ", n);
+SKIP IF n == 0 OTHERWISE DO
+    DECL m AS int END = f(n);
+WHILE m > 0 DO
+    printf("%d ", m);
+END_LOOP
+// infinite
+LOOP
+    ...
+END_LOOP
+// while
+LOOP WHILE a < b DO
+    ...
+END_LOOP
+// do
+LOOP
+    ...
+WHILE a < b
+END_LOOP
 ```
 for:  
 syntax is `FOR decl PREP prep COND cond STEP step START_FOR code END_FOR`  
@@ -79,7 +93,7 @@ START_FOR
     printf(...);
 END_FOR
 ```
-there are also `CONTINUE`, `BREAK`, `PASS` keywords (pass does nothing)
+there are also `SKIP`, `BREAK`, `PASS` keywords (continue, break, do nothing)
 function:
 ```VB
 GLOBAL_PRIVATE FUNCTION myLog OF (DECL message AS char* END, ...) AS void END_FUNC_DECL // GLOBAL_PRIVATE is translation unit private (static)
