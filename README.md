@@ -52,7 +52,7 @@ END_IF
 ```
 loop:  
 generic chained loop  
-It can have 0 or more `WHILE`s  
+It can have 0 or more `WHILE`s & `SKIP IF`s  
 and if there is code after `WHILE` there has to be `DO`  
 ```VB
 // chain
