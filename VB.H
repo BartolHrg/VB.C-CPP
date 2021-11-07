@@ -33,7 +33,7 @@
 #define END_FOR }) __VB_C_CPP_RB
 
 #define PASS 
-#define SKIP continue
+#define CONTINUE continue
 #define BREAK break
 
 #define SCOPE {
