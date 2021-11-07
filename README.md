@@ -119,10 +119,10 @@ STRUCT LinkedListNode
 START_STRUCT
     DECL data AS void* END;
     DECL next AS LinkedListNode* END;
-    DECL FUNCTION_POINTER( insertAfter OF (
+    DECL FUNCTION_POINTER insertAfter OF (
         DECL this AS LinkedListNode* END, 
         DECL item AS LinkedListNode* END
-    ) ) AS bool END;
+    ) AS bool END;
 END_STRUCT
 ENUM DaysOfWeek
 START_ENUM
