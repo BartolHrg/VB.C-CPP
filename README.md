@@ -82,7 +82,7 @@ END_LOOP
 for:  
 syntax is `FOR decl PREP prep COND cond STEP step START_FOR code END_FOR`  
 it is possible to declare multiple variables  
-and to have however complicated statements in decl, prep and step
+and to have however complicated statements in decl, prep and step  
 be careful with semicolons  
 ```VB
 FOR DECL i AS int END = 0; DECL c AS char END;
@@ -93,8 +93,8 @@ START_FOR
     printf(...);
 END_FOR
 ```
-there are also `CONTINUE`, `BREAK`, `PASS` keywords (continue, break, do nothing)
-function:
+there are also `CONTINUE`, `BREAK`, `PASS` keywords (continue, break, do nothing)  
+function:  
 ```VB
 GLOBAL_PRIVATE FUNCTION myLog OF (DECL message AS char* END, ...) AS void END_FUNC_DECL // GLOBAL_PRIVATE is translation unit private (static)
 FUNCTION main OF (DECL argc AS int END, DECL argv AS char** END) AS int
