@@ -4,44 +4,29 @@
 #include "VB.H"
 
 #undef __VB_C_CPP_STRUCT
-#undef __VB_C_CPP_STRUCT_CONST
-#undef STRUCT
-#undef STRUCT_CONST
-#undef START_STRUCT
-#undef END_STRUCT
-#define __VB_C_CPP_STRUCT(name, body) struct __VB_C_CPP_ARGS name __VB_C_CPP_ARGS body;
-#define STRUCT struct
-#define START_STRUCT {
-#define END_STRUCT };
+#define __VB_C_CPP_STRUCT(name, body, _) struct __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
 
 #undef __VB_C_CPP_ENUM
-#undef ENUM
-#undef START_ENUM
-#undef END_ENUM
-#define __VB_C_CPP_ENUM(name, body) enum class __VB_C_CPP_ARGS name __VB_C_CPP_ARGS body;
-#define ENUM enum class
-#define START_ENUM {
-#define END_ENUM };
+#define __VB_C_CPP_ENUM(name, body, _) enum class __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
     
-#define CLASS class 
-#define START_CLASS {
-#define END_CLASS };
+#define __VB_C_CPP_CLASS(name, body, _) class __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
+#define CLASS __VB_C_CPP_CLASS __VB_C_CPP_LB (
 
+
+#define __VB_C_CPP_CONTAINING(body, _) { __VB_C_CPP_ARGS body };
 #define NAMESPACE namespace
-#define START_NAMESPACE {
-#define END_NAMESPACE }
+#define CONTAINING __VB_C_CPP_CONTAINING __VB_C_CPP_LB (
 
-#define __VB_C_CPP_FOR_EACH(element, type, array, body) for (__VB_C_CPP_ARGS type element : __VB_C_CPP_ARGS array) __VB_C_CPP_ARGS body
-#define FOR_EACH __VB_C_CPP_FOR_EACH __VB_C_CPP_LB __VB_C_CPP_ARGS __VB_C_CPP_LB
+#define __VB_C_CPP_FOR_EACH(element, type, array, body, _) for (__VB_C_CPP_ARGS type __VB_C_CPP_ARGS element : __VB_C_CPP_ARGS array) { __VB_C_CPP_ARGS body }
+#define FOR_EACH __VB_C_CPP_FOR_EACH __VB_C_CPP_LB (
 #define IN ), (
-#define START_FOR_EACH ), ({
-#define END_FOR_EACH }) __VB_C_CPP_RB
 
-#define TRY try {
+
+#define __VB_C_CPP_TRY(body, _) try { __VB_C_CPP_ARGS body }
+#define TRY __VB_C_CPP_TRY __VB_C_CPP_LB (
 #define CATCH } catch (DECL
 #define DO_THIS END) {
 #define CATCH_ALL } catch (...) {
-#define END_TRY }
 #define THROW throw
 
 #define TEMPLATE template
