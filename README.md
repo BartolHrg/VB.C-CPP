@@ -3,7 +3,8 @@
 
 The whole project are just 2 header files with a bunch of macros.  
 Do you want to declare a function pointer,   
-well then `DECL FUNCTION_POINTER fp OF (args) AS return_type END`
+well then `DECL FUNCTION_POINTER fp OF (args) AS return_type END`  
+!! VB.C++ might be incomlpete !!
 
 ---
 ## syntax:
@@ -147,7 +148,8 @@ Pointers to arrays, and other such shenanigans, are not supported
 ### VB.C++
 
 Everything from VB.C applies here  
-With some added functionality
+With some added functionality  
+!! VB.C++ might be incomlpete !!  
 
 class & template:
 ```VB
