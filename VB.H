@@ -27,7 +27,7 @@
 #define SKIP_IF if (
 #define OTHERWISE ) continue;
 
-#define __VB_C_CPP_FOR(decl, prep, cond, step, body, _) { \
+#define __VB_C_CPP_FOR(decl, prep, cond, step, __, body, _) { \
     __VB_C_CPP_ARGS decl                         \
     while(1) {                                   \
         __VB_C_CPP_ARGS prep                     \
@@ -69,9 +69,9 @@
 #define __VB_C_CPP_FUNC(name) (*name)
 #define FUNC __VB_C_CPP_FUNC __VB_C_CPP_LB (
 
-#define __VB_C_CPP_FUNCTION_BODY__VB_C_CPP_OK(body) { __VB_C_CPP_ARGS body }
-#define __VB_C_CPP_FUNCTION_BODY__VB_C_CPP_NO_BODY(body) ;
-#define __VB_C_CPP_FUNCTION(name_OF_args, ret_t, body, has_body) __VB_C_CPP_ARGS ret_t __VB_C_CPP_ARGS name_OF_args __VB_C_CPP_FUNCTION_BODY##has_body (body)
+#define __VB_C_CPP_FUNCTION_BODY__VB_C_CPP_START_M(body, _) { __VB_C_CPP_ARGS body }
+#define __VB_C_CPP_FUNCTION_BODY__VB_C_CPP_END_M(_) ;
+#define __VB_C_CPP_FUNCTION(name_OF_args, ret_t, has_body, ...) __VB_C_CPP_ARGS ret_t __VB_C_CPP_ARGS name_OF_args __VB_C_CPP_FUNCTION_BODY##has_body (__VA_ARGS__)
 #define FUNCTION __VB_C_CPP_FUNCTION __VB_C_CPP_LB __VB_C_CPP_ARGS __VB_C_CPP_LB __VB_C_CPP_ARGS __VB_C_CPP_LB (
 #define OF ) __VB_C_CPP_RB
 #define NO_BODY ), (), __VB_C_CPP_NO_BODY __VB_C_CPP_RB
@@ -81,15 +81,15 @@
 #define __VB_C_CPP_TYPEDEF(name, type, _) typedef __VB_C_CPP_ARGS type __VB_C_CPP_ARGS name;
 #define TYPEDEF __VB_C_CPP_TYPEDEF __VB_C_CPP_LB (
 
-#define __VB_C_CPP_STRUCT(name, body, _) typedef struct __VB_C_CPP_ARGS name __VB_C_CPP_ARGS name; struct __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
+#define __VB_C_CPP_STRUCT(name, __, body, _) typedef struct __VB_C_CPP_ARGS name __VB_C_CPP_ARGS name; struct __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
 #define STRUCT __VB_C_CPP_STRUCT __VB_C_CPP_LB (
 
-#define __VB_C_CPP_ENUM(name, body, _) typedef enum __VB_C_CPP_ARGS name __VB_C_CPP_ARGS name; enum __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
+#define __VB_C_CPP_ENUM(name, __, body, _) typedef enum __VB_C_CPP_ARGS name __VB_C_CPP_ARGS name; enum __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
 #define ENUM __VB_C_CPP_ENUM __VB_C_CPP_LB (
 
 
-#define START ), (
-#define END ), __VB_C_CPP_OK __VB_C_CPP_RB
+#define START ), __VB_C_CPP_START_M, (
+#define END ), __VB_C_CPP_END_M __VB_C_CPP_RB
 
 
 #endif // VB_H

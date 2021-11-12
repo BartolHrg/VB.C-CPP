@@ -4,12 +4,12 @@
 #include "VB.H"
 
 #undef __VB_C_CPP_STRUCT
-#define __VB_C_CPP_STRUCT(name, body, _) struct __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
+#define __VB_C_CPP_STRUCT(name, __, body, _) struct __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
 
 #undef __VB_C_CPP_ENUM
-#define __VB_C_CPP_ENUM(name, body, _) enum class __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
+#define __VB_C_CPP_ENUM(name, __, body, _) enum class __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
     
-#define __VB_C_CPP_CLASS(name, body, _) class __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
+#define __VB_C_CPP_CLASS(name, __, body, _) class __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
 #define CLASS __VB_C_CPP_CLASS __VB_C_CPP_LB (
 
 
@@ -17,7 +17,7 @@
 #define NAMESPACE namespace
 #define CONTAINING __VB_C_CPP_CONTAINING __VB_C_CPP_LB (
 
-#define __VB_C_CPP_FOR_EACH(element, type, array, body, _) for (__VB_C_CPP_ARGS type __VB_C_CPP_ARGS element : __VB_C_CPP_ARGS array) { __VB_C_CPP_ARGS body }
+#define __VB_C_CPP_FOR_EACH(element, type, array, __, body, _) for (__VB_C_CPP_ARGS type __VB_C_CPP_ARGS element : __VB_C_CPP_ARGS array) { __VB_C_CPP_ARGS body }
 #define FOR_EACH __VB_C_CPP_FOR_EACH __VB_C_CPP_LB (
 #define IN ), (
 
