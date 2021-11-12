@@ -61,7 +61,7 @@ LOOP
     DECL n AS int END = inputInt();
 WHILE n > 0 DO
     printf("you entered %d ", n);
-SKIP IF n == 0 OTHERWISE
+SKIP_IF n == 0 OTHERWISE
     DECL m AS int END = f(n);
 WHILE m > 0 DO
     printf("%d ", m);
@@ -94,10 +94,10 @@ START
     printf(...);
 END
 ```
-there are also `CONTINUE`, `BREAK`, `PASS` keywords (continue, break, do nothing)  
+there are also `SKIP`, `BREAK`, `PASS` keywords (continue, break, do nothing)  
 function:  
 ```VB
-GLOBAL_PRIVATE FUNCTION myLog OF (DECL message AS char* END, ...) AS void NO_BODY // GLOBAL_PRIVATE is translation unit private (static)
+GLOBAL_PRIVATE FUNCTION myLog OF (DECL message AS char* END, ...) AS void END // GLOBAL_PRIVATE is translation unit private (static)
 FUNCTION main OF (DECL argc AS int END, DECL argv AS char** END) AS int
 START
     myLog(); myLog(); 
@@ -158,11 +158,11 @@ CLASS LinkedList
 START
     PRIVATE:
         DECL head AS LinkedListNode* END;
-        STATIC FUNCTION createFromArray OF (DECL size AS int END, DECL arr AS T* END) AS LinkedList<T>* NO_BODY
+        STATIC FUNCTION createFromArray OF (DECL size AS int END, DECL arr AS T* END) AS LinkedList<T>* END
     PROTECTED:
     PUBLIC:
         FRIEND FUNCTION ...
-        FUNCTION OPERATOR << OF (DECL item AS T END) AS bool NO_BODY
+        FUNCTION OPERATOR << OF (DECL item AS T END) AS bool END
 END
 ```
 namespace:

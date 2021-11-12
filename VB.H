@@ -74,7 +74,6 @@
 #define __VB_C_CPP_FUNCTION(name_OF_args, ret_t, has_body, ...) __VB_C_CPP_ARGS ret_t __VB_C_CPP_ARGS name_OF_args __VB_C_CPP_FUNCTION_BODY##has_body (__VA_ARGS__)
 #define FUNCTION __VB_C_CPP_FUNCTION __VB_C_CPP_LB __VB_C_CPP_ARGS __VB_C_CPP_LB __VB_C_CPP_ARGS __VB_C_CPP_LB (
 #define OF ) __VB_C_CPP_RB
-#define NO_BODY ), (), __VB_C_CPP_NO_BODY __VB_C_CPP_RB
 #define RETURN return
 
 
