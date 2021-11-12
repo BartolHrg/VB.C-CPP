@@ -24,7 +24,7 @@
 #define __VB_C_CPP_WHILE(...) if (!(__VA_ARGS__)) break;
 #define WHILE __VB_C_CPP_RB __VB_C_CPP_WHILE __VB_C_CPP_LB
 #define DO __VB_C_CPP_RB __VB_C_CPP_ARGS __VB_C_CPP_LB
-#define SKIP
+#define SKIP_IF if (
 #define OTHERWISE ) continue;
 
 #define __VB_C_CPP_FOR(decl, prep, cond, step, body, _) { \
@@ -42,7 +42,7 @@
 #define STEP ), (
 
 #define PASS 
-#define CONTINUE continue
+#define SKIP continue
 #define BREAK break
 
 
