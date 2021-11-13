@@ -32,3 +32,6 @@ IF is currently FORK IF
     could be BRANCH, ELSEIF, ELSE
     could be TEST IF
 
+NAMESPACE starts with CONTAINING, and not START
+    this is for compatibility with `USING NAMESPACE std;`
+
