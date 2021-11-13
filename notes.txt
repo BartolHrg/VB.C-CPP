@@ -26,3 +26,9 @@ we don't talk about VB.C++
 ELSE_IF should be 2 words
     impossible?
     same with SKIP_IF, though different reason
+    
+IF is currently FORK IF
+    could be plain IF
+    could be BRANCH, ELSEIF, ELSE
+    could be TEST IF
+
