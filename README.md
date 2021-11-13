@@ -3,7 +3,7 @@
 
 The whole project are just 2 header files with a bunch of macros.  
 Do you want to declare a function pointer,   
-well then `DECL FUNCTION_POINTER fp OF (args) AS return_type END`  
+well then `DECL fp AS_FUNC OF (args) AS return_type END`  
 !! VB.C++ might be incomlpete !!
 
 ---
@@ -34,6 +34,7 @@ DECL matrix AS int ARRAY [I][J] = ZERO_ARRAY; // int matrix[I][J] = {0};
 cast:
 ```VB
 CAST(n AS double) / k // ((double)(n)) / k
+CAST(f AS_FUNC OF (void*) AS void) // ((void (*)(void*)) f)
 ```
 variable scope:
 ```VB
@@ -110,9 +111,9 @@ END
 ```
 function pointer
 ```VB
-DECL FP fp OF (int, int) AS unsigned long END;
-// OR
-DECL FUNCTION_POINTER fp OF (DECL AS int END, DECL AS int END) AS unsigned long END;
+DECL fp AS_FUNC OF (int, int) AS unsigned long END;
+// OR (AS_FUNC is optional)
+DECL fp OF (DECL AS int END, DECL AS int END) AS unsigned long END;
 ```
 struct & enum:
 ```VB
@@ -120,7 +121,7 @@ STRUCT LinkedListNode
 START
     DECL data AS void* END;
     DECL next AS LinkedListNode* END;
-    DECL FUNCTION_POINTER insertAfter OF (
+    DECL insertAfter AS_FUNC OF (
         DECL this AS LinkedListNode* END, 
         DECL item AS LinkedListNode* END
     ) AS bool END;
@@ -134,7 +135,7 @@ END
 typedef:
 ```VB
 TYPEDEF MyName AS int END
-TYPEDEF FUNCTION_POINTER CommonFunction OF (int, int) AS int END
+TYPEDEF CommonFunction AS_FUNC OF (int, int) AS int END
 ```
 
 

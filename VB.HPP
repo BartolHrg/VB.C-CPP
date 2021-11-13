@@ -17,7 +17,9 @@
 #define NAMESPACE namespace
 #define CONTAINING __VB_C_CPP_CONTAINING __VB_C_CPP_LB (
 
-#define __VB_C_CPP_FOR_EACH(element, type, array, __, body, _) for (__VB_C_CPP_ARGS type __VB_C_CPP_ARGS element : __VB_C_CPP_ARGS array) { __VB_C_CPP_ARGS body }
+#define __VB_C_CPP_FOR_EACH__(decl, array, __, body, _) for (__VB_C_CPP_ARGS decl : __VB_C_CPP_ARGS array) { __VB_C_CPP_ARGS body }
+#define __VB_C_CPP_FOR_EACH_(...) __VB_C_CPP_FOR_EACH__(__VA_ARGS__)
+#define __VB_C_CPP_FOR_EACH(element, ...) __VB_C_CPP_FOR_EACH_(__VB_C_CPP_DECL0(name, __VA_ARGS__))
 #define FOR_EACH __VB_C_CPP_FOR_EACH __VB_C_CPP_LB (
 #define IN ), (
 

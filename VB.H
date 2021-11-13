@@ -49,35 +49,69 @@
 #define __VB_C_CPP_SCOPE(body, _) { __VB_C_CPP_ARGS body }
 #define SCOPE __VB_C_CPP_SCOPE __VB_C_CPP_LB (
 
+#define __VB_C_CPP_DECL__VB_C_CPP_AS_M9(name, type, ...) (__VB_C_CPP_ARGS type name), __VA_ARGS__
+#define __VB_C_CPP_DECL__VB_C_CPP_OF_M9(name, args, ...) __VB_C_CPP_DECL10((*name) __VB_C_CPP_ARGS args, __VA_ARGS__)
+#define __VB_C_CPP_DECL9(name, h, ...) __VB_C_CPP_DECL##h##9 (name, __VA_ARGS__)
+#define __VB_C_CPP_DECL__VB_C_CPP_AS_M8(name, type, ...) (__VB_C_CPP_ARGS type name), __VA_ARGS__
+#define __VB_C_CPP_DECL__VB_C_CPP_OF_M8(name, args, ...) __VB_C_CPP_DECL9((*name) __VB_C_CPP_ARGS args, __VA_ARGS__)
+#define __VB_C_CPP_DECL8(name, h, ...) __VB_C_CPP_DECL##h##8 (name, __VA_ARGS__)
+#define __VB_C_CPP_DECL__VB_C_CPP_AS_M7(name, type, ...) (__VB_C_CPP_ARGS type name), __VA_ARGS__
+#define __VB_C_CPP_DECL__VB_C_CPP_OF_M7(name, args, ...) __VB_C_CPP_DECL8((*name) __VB_C_CPP_ARGS args, __VA_ARGS__)
+#define __VB_C_CPP_DECL7(name, h, ...) __VB_C_CPP_DECL##h##7 (name, __VA_ARGS__)
+#define __VB_C_CPP_DECL__VB_C_CPP_AS_M6(name, type, ...) (__VB_C_CPP_ARGS type name), __VA_ARGS__
+#define __VB_C_CPP_DECL__VB_C_CPP_OF_M6(name, args, ...) __VB_C_CPP_DECL7((*name) __VB_C_CPP_ARGS args, __VA_ARGS__)
+#define __VB_C_CPP_DECL6(name, h, ...) __VB_C_CPP_DECL##h##6 (name, __VA_ARGS__)
+#define __VB_C_CPP_DECL__VB_C_CPP_AS_M5(name, type, ...) (__VB_C_CPP_ARGS type name), __VA_ARGS__
+#define __VB_C_CPP_DECL__VB_C_CPP_OF_M5(name, args, ...) __VB_C_CPP_DECL6((*name) __VB_C_CPP_ARGS args, __VA_ARGS__)
+#define __VB_C_CPP_DECL5(name, h, ...) __VB_C_CPP_DECL##h##5 (name, __VA_ARGS__)
+#define __VB_C_CPP_DECL__VB_C_CPP_AS_M4(name, type, ...) (__VB_C_CPP_ARGS type name), __VA_ARGS__
+#define __VB_C_CPP_DECL__VB_C_CPP_OF_M4(name, args, ...) __VB_C_CPP_DECL5((*name) __VB_C_CPP_ARGS args, __VA_ARGS__)
+#define __VB_C_CPP_DECL4(name, h, ...) __VB_C_CPP_DECL##h##4 (name, __VA_ARGS__)
+#define __VB_C_CPP_DECL__VB_C_CPP_AS_M3(name, type, ...) (__VB_C_CPP_ARGS type name), __VA_ARGS__
+#define __VB_C_CPP_DECL__VB_C_CPP_OF_M3(name, args, ...) __VB_C_CPP_DECL4((*name) __VB_C_CPP_ARGS args, __VA_ARGS__)
+#define __VB_C_CPP_DECL3(name, h, ...) __VB_C_CPP_DECL##h##3 (name, __VA_ARGS__)
+#define __VB_C_CPP_DECL__VB_C_CPP_AS_M2(name, type, ...) (__VB_C_CPP_ARGS type name), __VA_ARGS__
+#define __VB_C_CPP_DECL__VB_C_CPP_OF_M2(name, args, ...) __VB_C_CPP_DECL3((*name) __VB_C_CPP_ARGS args, __VA_ARGS__)
+#define __VB_C_CPP_DECL2(name, h, ...) __VB_C_CPP_DECL##h##2 (name, __VA_ARGS__)
+#define __VB_C_CPP_DECL__VB_C_CPP_AS_M1(name, type, ...) (__VB_C_CPP_ARGS type name), __VA_ARGS__
+#define __VB_C_CPP_DECL__VB_C_CPP_OF_M1(name, args, ...) __VB_C_CPP_DECL2((*name) __VB_C_CPP_ARGS args, __VA_ARGS__)
+#define __VB_C_CPP_DECL1(name, h, ...) __VB_C_CPP_DECL##h##1 (name, __VA_ARGS__)
+#define __VB_C_CPP_DECL__VB_C_CPP_AS_M0(name, type, ...) (__VB_C_CPP_ARGS type name), __VA_ARGS__
+#define __VB_C_CPP_DECL__VB_C_CPP_OF_M0(name, args, ...) __VB_C_CPP_DECL1((*name) __VB_C_CPP_ARGS args, __VA_ARGS__)
+#define __VB_C_CPP_DECL0(name, h, ...) __VB_C_CPP_DECL##h##0 (name, __VA_ARGS__)
 
-#define __VB_C_CPP_DECL(var, type, _) __VB_C_CPP_ARGS type var
+#define __VB_C_CPP_FIRST(first, ...) first
+
+#define __VB_C_CPP_DECL_(...) __VB_C_CPP_ARGS __VB_C_CPP_FIRST(__VA_ARGS__)
+#define __VB_C_CPP_DECL(var, handle, ...) __VB_C_CPP_DECL_(__VB_C_CPP_DECL0(var, handle, __VA_ARGS__)) // __VB_C_CPP_ARGS type var
 #define DECL __VB_C_CPP_DECL __VB_C_CPP_LB (
-#define AS ), (
+#define AS ), __VB_C_CPP_AS_M, (
 
-#define __VB_C_CPP_CAST(exp, type) (type exp)
+#define __VB_C_CPP_CAST(exp, ...) ((__VB_C_CPP_DECL(, __VA_ARGS__, __VB_C_CPP_CAST_M)) exp)
 #define CAST(...) __VB_C_CPP_CAST((__VA_ARGS__))
 
 #define DEFINE_LATER extern
 #define GLOBAL_PRIVATE static
 #define LOCAL_DEFINE_ONCE static
 
-#define ARRAY ), __VB_C_CPP_ARRAY __VB_C_CPP_RB
+#define ARRAY ), __VB_C_CPP_ARRAY_M __VB_C_CPP_RB
 #define ZERO_ARRAY {0}
 #define REST_ALL_ZEROS
 
 
-#define __VB_C_CPP_FUNC(name) (*name)
-#define FUNC __VB_C_CPP_FUNC __VB_C_CPP_LB (
+#define AS_FUNC 
 
 #define __VB_C_CPP_FUNCTION_BODY__VB_C_CPP_START_M(body, _) { __VB_C_CPP_ARGS body }
 #define __VB_C_CPP_FUNCTION_BODY__VB_C_CPP_END_M(_) ;
-#define __VB_C_CPP_FUNCTION(name_OF_args, ret_t, has_body, ...) __VB_C_CPP_ARGS ret_t __VB_C_CPP_ARGS name_OF_args __VB_C_CPP_FUNCTION_BODY##has_body (__VA_ARGS__)
-#define FUNCTION __VB_C_CPP_FUNCTION __VB_C_CPP_LB __VB_C_CPP_ARGS __VB_C_CPP_LB __VB_C_CPP_ARGS __VB_C_CPP_LB (
-#define OF ) __VB_C_CPP_RB
+#define __VB_C_CPP_FUNCTION__(decl, has_body, ...) __VB_C_CPP_ARGS decl __VB_C_CPP_FUNCTION_BODY##has_body (__VA_ARGS__)
+#define __VB_C_CPP_FUNCTION_(...) __VB_C_CPP_FUNCTION__(__VA_ARGS__)
+#define __VB_C_CPP_FUNCTION(name, __, args, ...) __VB_C_CPP_FUNCTION_(__VB_C_CPP_DECL0((__VB_C_CPP_ARGS name __VB_C_CPP_ARGS args), __VA_ARGS__))
+#define FUNCTION __VB_C_CPP_FUNCTION __VB_C_CPP_LB (
+#define OF ), __VB_C_CPP_OF_M, (
 #define RETURN return
 
 
-#define __VB_C_CPP_TYPEDEF(name, type, _) typedef __VB_C_CPP_ARGS type __VB_C_CPP_ARGS name;
+#define __VB_C_CPP_TYPEDEF(name, ...) typedef __VB_C_CPP_DECL(name, __VA_ARGS__);
 #define TYPEDEF __VB_C_CPP_TYPEDEF __VB_C_CPP_LB (
 
 #define __VB_C_CPP_STRUCT(name, __, body, _) typedef struct __VB_C_CPP_ARGS name __VB_C_CPP_ARGS name; struct __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
