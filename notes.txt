@@ -2,19 +2,7 @@
 I'm unhappy because enums are not scoped (in C only)
 and I cannot fix it
 
-ARRAY & FUNCTION_POINTER declarations should remain in parens
-because it would make confusion with all the nested ENDs
-
-Maybe OF_SIZE should be 2 words (not)
-
-FUNCTION_POINTER could be without parens around args (using varargs)
-but that wouldn't be compatible with FUNCTION and maybe wouldn't look nice
-
-Maybe add DO versions of FORs
-
 SCOPE
-    maybe add START_SCOPE { and make SCOPE empty
-    maybe remove SCOPE
     maybe add optional name (need SCOPE & START_SCOPE)
 
 can we include .h file after .hpp
@@ -24,12 +12,17 @@ can we include .h file after .hpp
 
 I don't want to #define new & delete
 idk y
- 
-TYPEDEF looks like it's missing ;, but it doesn't
 
 should I add AND OR (XOR, NOR, NAND, NXOR)
 
 i should add support for c++ initializations... when I figure them out
 
-why do FOR and PREFOR need to have parens
-    they don't. ?
+maybe add RETURING, as alternative to AS in FUNCTON(*)
+    no, because function returning functon
+        RETURNING_FUNC ?
+
+we don't talk about VB.C++
+
+ELSE_IF should be 2 words
+    impossible?
+    same with SKIP_IF, though different reason
