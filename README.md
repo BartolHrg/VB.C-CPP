@@ -109,7 +109,8 @@ START
     printf("#%d ", counter++); // printf(message, __VA_ARGS__);
 END
 ```
-function pointer
+function pointer:  
+It suports "only" 10 levels of functions returning functions  
 ```VB
 DECL fp AS_FUNC OF (int, int) AS unsigned long END;
 // OR (AS_FUNC is optional)
