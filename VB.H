@@ -81,8 +81,9 @@
 #define __VB_C_CPP_DECL0(name, h, ...) __VB_C_CPP_DECL##h##0 (name, __VA_ARGS__)
 
 #define __VB_C_CPP_FIRST(first, ...) first
+#define __VB_C_CPP_FIRST_ARGS(first, ...) __VB_C_CPP_ARGS first
 
-#define __VB_C_CPP_DECL_(...) __VB_C_CPP_ARGS __VB_C_CPP_FIRST(__VA_ARGS__)
+#define __VB_C_CPP_DECL_(...)  __VB_C_CPP_FIRST_ARGS(__VA_ARGS__)
 #define __VB_C_CPP_DECL(var, handle, ...) __VB_C_CPP_DECL_(__VB_C_CPP_DECL0(var, handle, __VA_ARGS__)) // __VB_C_CPP_ARGS type var
 #define DECL __VB_C_CPP_DECL __VB_C_CPP_LB (
 #define AS ), __VB_C_CPP_AS_M, (
