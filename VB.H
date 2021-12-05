@@ -112,8 +112,9 @@
 #define RETURN return
 
 
-#define __VB_C_CPP_TYPEDEF(name, ...) typedef __VB_C_CPP_DECL(name, __VA_ARGS__);
+#define __VB_C_CPP_TYPEDEF(name, ...) typedef __VB_C_CPP_DECL(name, __VA_ARGS__)
 #define TYPEDEF __VB_C_CPP_TYPEDEF __VB_C_CPP_LB (
+#define TYPE ;
 
 #define __VB_C_CPP_STRUCT(name, __, body, _) typedef struct __VB_C_CPP_ARGS name __VB_C_CPP_ARGS name; struct __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
 #define STRUCT __VB_C_CPP_STRUCT __VB_C_CPP_LB (

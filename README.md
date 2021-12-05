@@ -135,8 +135,9 @@ END
 ```
 typedef:
 ```VB
-TYPEDEF MyName AS int END
-TYPEDEF CommonFunction AS_FUNC OF (int, int) AS int END
+TYPEDEF MyName AS int END TYPE
+TYPEDEF CommonFunction AS_FUNC OF (int, int) AS int END TYPE
+TYPEDEF Row AS int ARRAY [5] TYPE
 ```
 
 
