@@ -158,7 +158,10 @@ TYPEDEF Row AS int ARRAY [5] TYPE
 
 You cannot `DECL` multiple variables at once  
 Pointers to arrays, and other such shenanigans, are not supported  
-// pointer to array would be `int (*a)[N];`
+// pointer to array would be `int (*a)[N];`  
+except indirectlly  
+`TYPEDEF Arr AS ARRAY [5] TYPE`  
+`DECL a AS Arr* END`  
 
 
 ---
