@@ -46,9 +46,22 @@ if:
 ```VB
 FORK IF 0 <= a && a < 10 THEN
     printf(...);
-ELSE_IF -10 < a THEN
+ELSE IF -10 < a THEN
     printf(...);
 ELSE
+    printf(...);
+END
+```
+switch:  
+no `BREAK` needed  
+however, `BREAK` will exit switch, not loop that may be outside  
+```vb
+FORK x
+CASE a THEN
+    printf(...);
+CASE a THEN
+    printf(...);
+DEFAULT
     printf(...);
 END
 ```

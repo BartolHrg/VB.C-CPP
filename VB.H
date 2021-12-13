@@ -11,12 +11,27 @@
 #define __VB_C_CPP_RB )
 
 
-#define __VB_C_CPP_FORK(body, _) __VB_C_CPP_ARGS body }
+#define __VB_C_CPP_FORK__VB_C_CPP_IF_M(...)
+#define __VB_C_CPP_FORK(a, mark, ...) __VB_C_CPP_FORK##mark (a, __VA_ARGS__)
+#define __VB_C_CPP_IF(cond) if cond {
+#define __VB_C_CPP_THEN__VB_C_CPP_ELSE_M(body)  __VB_C_CPP_ARGS body }
+#define __VB_C_CPP_THEN__VB_C_CPP_END_M(body)  __VB_C_CPP_ARGS body }
+#define __VB_C_CPP_THEN(body, mark) __VB_C_CPP_THEN##mark (body)
+#define __VB_C_CPP_ELSE__VB_C_CPP_IF_M(body) else
+#define __VB_C_CPP_ELSE__VB_C_CPP_END_M(body) else { __VB_C_CPP_ARGS body }
+#define __VB_C_CPP_ELSE(body, mark) __VB_C_CPP_ELSE##mark (body)
 #define FORK __VB_C_CPP_FORK __VB_C_CPP_LB (
-#define IF if (
-#define THEN ) {
-#define ELSE_IF } else if (
-#define ELSE } else {
+#define IF ), __VB_C_CPP_IF_M __VB_C_CPP_RB __VB_C_CPP_IF __VB_C_CPP_LB (
+#define THEN ) __VB_C_CPP_RB __VB_C_CPP_THEN __VB_C_CPP_LB (
+#define ELSE ), __VB_C_CPP_ELSE_M __VB_C_CPP_RB __VB_C_CPP_ELSE __VB_C_CPP_LB (
+
+#define __VB_C_CPP_FORK__VB_C_CPP_CASE_M(a, ...) switch a {
+#define __VB_C_CPP_CASE(a) case a:
+#define __VB_C_CPP_THEN__VB_C_CPP_CASE_M(body) __VB_C_CPP_ARGS body break;
+#define __VB_C_CPP_THEN__VB_C_CPP_DEFAULT_M(body) __VB_C_CPP_ARGS body break;
+#define __VB_C_CPP_DEFAULT(body, mark) default: __VB_C_CPP_ARGS body }
+#define CASE ), __VB_C_CPP_CASE_M __VB_C_CPP_RB __VB_C_CPP_CASE __VB_C_CPP_LB (
+#define DEFAULT ), __VB_C_CPP_DEFAULT_M __VB_C_CPP_RB __VB_C_CPP_DEFAULT __VB_C_CPP_LB (
 
 
 #define __VB_C_CPP_LOOP(body, _) while (1) { __VB_C_CPP_ARGS body }
