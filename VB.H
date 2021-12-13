@@ -42,7 +42,7 @@
 #define SKIP_IF if (
 #define OTHERWISE ) continue;
 
-#define __VB_C_CPP_FOR(decl, prep, cond, step, __, body, _) { \
+#define __VB_C_CPP_FOR_(decl, prep, cond, step, body, ...) { \
     __VB_C_CPP_ARGS decl                         \
     while(1) {                                   \
         __VB_C_CPP_ARGS prep                     \
@@ -51,10 +51,15 @@
         __VB_C_CPP_ARGS step                     \
     }                                            \
 }                                             
+#define __VB_C_CPP_FOR2__VB_C_CPP_STEP_M(decl, prep, cond, step, _, body, ...)  __VB_C_CPP_FOR_(decl, prep, cond, step, body)
+#define __VB_C_CPP_FOR2__VB_C_CPP_START_M(decl, prep, cond, body, ...)          __VB_C_CPP_FOR_(decl, prep, cond, (  ), body)
+#define __VB_C_CPP_FOR__VB_C_CPP_PREP_M(decl, prep, _, cond, mark, ...) __VB_C_CPP_FOR2##mark(decl, prep, cond, __VA_ARGS__)
+#define __VB_C_CPP_FOR__VB_C_CPP_COND_M(decl, cond, mark, ...)          __VB_C_CPP_FOR2##mark(decl, (  ), cond, __VA_ARGS__)
+#define __VB_C_CPP_FOR(decl, mark, ...) __VB_C_CPP_FOR##mark(decl, __VA_ARGS__)
 #define FOR __VB_C_CPP_FOR __VB_C_CPP_LB (
-#define PREP ), (
-#define COND ), (
-#define STEP ), (
+#define PREP ), __VB_C_CPP_PREP_M, (
+#define COND ), __VB_C_CPP_COND_M, (
+#define STEP ), __VB_C_CPP_STEP_M, (
 
 #define PASS 
 #define SKIP continue
