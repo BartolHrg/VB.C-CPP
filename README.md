@@ -96,8 +96,8 @@ END
 ```
 for:  
 syntax is `FOR decl PREP prep COND cond STEP step START code END`  
-it is possible to declare multiple variables  
 `PREP prep` and `STEP step` are optional  
+it is possible to declare multiple variables  
 and to have however complicated statements in decl, prep and step  
 be careful with semicolons  
 ```VB
