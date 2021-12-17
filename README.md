@@ -147,6 +147,23 @@ START
     ...
 END
 ```
+also  
+if you want to only declare, but not define `STRUCT` or `ENUM`  
+```VB
+STRUCT LinkedListNode END
+```
+to use it in two-way refereneces
+```VB
+STRUCT LinkedList
+START
+	DECL head AS LinkedListNode* END;
+END
+STRUCT LinkedListNode
+START
+	DECL owner AS LinkedList* END;
+	...
+END
+```
 typedef:
 ```VB
 TYPEDEF MyName AS int END TYPE
