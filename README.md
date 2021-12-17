@@ -152,7 +152,7 @@ if you want to only declare, but not define `STRUCT` or `ENUM`
 ```VB
 STRUCT LinkedListNode END
 ```
-to use it in two-way refereneces
+e.g. to use it in two-way refereneces
 ```VB
 STRUCT LinkedList
 START
