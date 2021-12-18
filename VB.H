@@ -13,12 +13,12 @@
 
 #define __VB_C_CPP_FORK__VB_C_CPP_IF_M(...)
 #define __VB_C_CPP_FORK(a, mark, ...) __VB_C_CPP_FORK##mark (a, __VA_ARGS__)
-#define __VB_C_CPP_IF(cond) if cond {
-#define __VB_C_CPP_THEN__VB_C_CPP_ELSE_M(body)  __VB_C_CPP_ARGS body }
-#define __VB_C_CPP_THEN__VB_C_CPP_END_M(body)  __VB_C_CPP_ARGS body }
+#define __VB_C_CPP_IF(cond) if cond {{
+#define __VB_C_CPP_THEN__VB_C_CPP_ELSE_M(body)  __VB_C_CPP_ARGS body }}
+#define __VB_C_CPP_THEN__VB_C_CPP_END_M(body)  __VB_C_CPP_ARGS body }}
 #define __VB_C_CPP_THEN(body, mark) __VB_C_CPP_THEN##mark (body)
 #define __VB_C_CPP_ELSE__VB_C_CPP_IF_M(body) else
-#define __VB_C_CPP_ELSE__VB_C_CPP_END_M(body) else { __VB_C_CPP_ARGS body }
+#define __VB_C_CPP_ELSE__VB_C_CPP_END_M(body) else {{ __VB_C_CPP_ARGS body }}
 #define __VB_C_CPP_ELSE(body, mark) __VB_C_CPP_ELSE##mark (body)
 #define FORK __VB_C_CPP_FORK __VB_C_CPP_LB (
 #define IF ), __VB_C_CPP_IF_M __VB_C_CPP_RB __VB_C_CPP_IF __VB_C_CPP_LB (
@@ -26,10 +26,10 @@
 #define ELSE ), __VB_C_CPP_ELSE_M __VB_C_CPP_RB __VB_C_CPP_ELSE __VB_C_CPP_LB (
 
 #define __VB_C_CPP_FORK__VB_C_CPP_CASE_M(a, ...) switch a {
-#define __VB_C_CPP_CASE(a) case a:
-#define __VB_C_CPP_THEN__VB_C_CPP_CASE_M(body) __VB_C_CPP_ARGS body break;
-#define __VB_C_CPP_THEN__VB_C_CPP_DEFAULT_M(body) __VB_C_CPP_ARGS body break;
-#define __VB_C_CPP_DEFAULT(body, mark) default: __VB_C_CPP_ARGS body }
+#define __VB_C_CPP_CASE(a) case a: {
+#define __VB_C_CPP_THEN__VB_C_CPP_CASE_M(body) __VB_C_CPP_ARGS body break; }
+#define __VB_C_CPP_THEN__VB_C_CPP_DEFAULT_M(body) __VB_C_CPP_ARGS body break; }
+#define __VB_C_CPP_DEFAULT(body, mark) default: { __VB_C_CPP_ARGS body } }
 #define CASE ), __VB_C_CPP_CASE_M __VB_C_CPP_RB __VB_C_CPP_CASE __VB_C_CPP_LB (
 #define DEFAULT ), __VB_C_CPP_DEFAULT_M __VB_C_CPP_RB __VB_C_CPP_DEFAULT __VB_C_CPP_LB (
 
@@ -42,15 +42,20 @@
 #define SKIP_IF if (
 #define OTHERWISE ) continue;
 
-#define __VB_C_CPP_FOR_(decl, prep, cond, step, body, ...) { \
-    __VB_C_CPP_ARGS decl                         \
-    while(1) {                                   \
-        __VB_C_CPP_ARGS prep                     \
-        if (!cond) break;                        \
-        __VB_C_CPP_ARGS body                     \
-        __VB_C_CPP_ARGS step                     \
-    }                                            \
-}                                             
+#define __VB_C_CPP_FOR_(decl, prep, cond, step, body, ...) {      \
+    __VB_C_CPP_ARGS decl                                          \
+    char __VB_C_CPP_is_first = true;                              \
+    while(1) {                                                    \
+        if (!__VB_C_CPP_is_first) {                               \
+            __VB_C_CPP_ARGS step                                  \
+        } else {                                                  \
+            __VB_C_CPP_is_first = false;                          \
+        }                                                         \
+        __VB_C_CPP_ARGS prep                                      \
+        if (!cond) break;                                         \
+        __VB_C_CPP_ARGS body                                      \
+    }                                                             \
+}
 #define __VB_C_CPP_FOR2__VB_C_CPP_STEP_M(decl, prep, cond, step, _, body, ...)  __VB_C_CPP_FOR_(decl, prep, cond, step, body)
 #define __VB_C_CPP_FOR2__VB_C_CPP_START_M(decl, prep, cond, body, ...)          __VB_C_CPP_FOR_(decl, prep, cond, (  ), body)
 #define __VB_C_CPP_FOR__VB_C_CPP_PREP_M(decl, prep, _, cond, mark, ...) __VB_C_CPP_FOR2##mark(decl, prep, cond, __VA_ARGS__)
