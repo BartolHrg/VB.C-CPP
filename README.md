@@ -164,6 +164,17 @@ START
 	...
 END
 ```
+there is also generic struct  
+however, there is no VB.C way of defining generic function  
+(so, be creative)  
+```VB
+#define Array(T, len) GENERIC_STRUCT   \
+START                                  \
+    DECL length AS size_t END;         \
+    DECL arr AS T ARRAY [len];         \
+END
+DECL a AS Array(int, 8) END;
+```
 typedef:
 ```VB
 TYPEDEF MyName AS int END TYPE

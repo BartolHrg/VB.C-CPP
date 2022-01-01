@@ -146,6 +146,9 @@
 #define __VB_C_CPP_STRUCT(name, mark, ...) __VB_C_CPP_STRUCT##mark(name, __VA_ARGS__)
 #define STRUCT __VB_C_CPP_STRUCT __VB_C_CPP_LB (
 
+#define __VB_C_CPP_GENERIC_STRUCT(name, start_mark, body, end_mark) struct { __VB_C_CPP_ARGS body }
+#define GENERIC_STRUCT __VB_C_CPP_GENERIC_STRUCT __VB_C_CPP_LB (
+
 #define __VB_C_CPP_ENUM__VB_C_CPP_START_M(name, body, _) typedef enum __VB_C_CPP_ARGS name __VB_C_CPP_ARGS name; enum __VB_C_CPP_ARGS name { __VB_C_CPP_ARGS body };
 #define __VB_C_CPP_ENUM__VB_C_CPP_END_M(name, __) typedef enum __VB_C_CPP_ARGS name __VB_C_CPP_ARGS name; 
 #define __VB_C_CPP_ENUM(name, mark, ...) __VB_C_CPP_ENUM##mark(name, __VA_ARGS__)
