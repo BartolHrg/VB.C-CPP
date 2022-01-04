@@ -11,7 +11,6 @@ well then `DECL fp AS_FUNC OF (args) AS return_type END`
 
 Important!!  
 Whole file excluding #includes should be surrounded by VB_C_CPP_FILE macro  
-// actually, probably only #includes that use VB.H(PP), but better be safe than sorry  
 ```c
 #include "VB.H"
 VB_C_CPP_FILE(
