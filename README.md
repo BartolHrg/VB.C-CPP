@@ -1,10 +1,19 @@
 # VB.C/C++
 ## Visual Basic-like syntax for C/C++
 
+
+
+this is v3 documentation  
+new documentation coming soon  
+
+
+
+
+
 The whole project are just 2 header files with a bunch of macros.  
 Do you want to declare a function pointer,   
 well then `DECL fp AS_FUNC OF (args) AS return_type END`  
-!! VB.C++ might be incomlpete !!
+!! VB.C++ might be incomplete !!
 
 ---
 ## syntax:
