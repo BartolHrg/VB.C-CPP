@@ -35,3 +35,26 @@ IF is currently FORK IF
 NAMESPACE starts with CONTAINING, and not START
     this is for compatibility with `USING NAMESPACE std;`
 
+RANGE
+	reverse: 
+		pad = 2s + b*( (e-s-1) // b )
+		i = pad - _i
+	descending:
+		
+FOR ARRAY
+	ARRAY je ), __ARR_M )
+	pa treba FOR biti __FOR (((
+	ali je onda problem sa ostalima END
+	onda COND i RANGE isto moraju biti ))
+	a što ako ću htjeti FOR ARRAY COND
+		
+	sintaksa:
+	FOR el AS double IN CUBOID my3d OF SIZE (4, 5, 6) 
+	START
+		el.i, el.j, el.k, *el.item
+	END
+	FOR el IN arr OF SIZE (6) ??????????????????
+	FOR el IN MATRIX M OF SIZE (5, 6)
+	
+	ND
+	FOR el AS double IN NDARRAY arr OF SIZE (4, 5, 6, 7)
