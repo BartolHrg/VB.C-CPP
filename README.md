@@ -485,7 +485,7 @@ FOR() x IN arr...
 START  
     FORK IF cond THEN 
         // there is such value  
-        BREAK() 
+        BREAK(); 
     END  
 DIDNT_BREAK  
     // there isn't such value  
