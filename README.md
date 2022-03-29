@@ -402,7 +402,7 @@ It made some wonderful things, but it also made some ugly.
 First, every file has to be enclosed by VB_C_FILE, which is really not cool.  
 Something even less cool is that error messages are bad:  
 you get a huge error message because a lot of macros are involved,  
-and you even don't what line is erroneous, because C macros don't keep newlines (so everything is on the line where VB_C_FILE is)
+and you even don't know what line is erroneous, because C macros don't keep newlines (so everything is on the line where VB_C_FILE is)
   
 This also makes debugging, using tools, not possible.  
   
