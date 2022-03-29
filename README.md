@@ -28,7 +28,7 @@ Then I defined more fun things (IF, FOR, PREFOR, WHILE, FUNCTION, TYPEDEF, STRUC
   
 Now, you might wonder, why is it all CAPITAL LETTERS:  
 - because the C convention for macros is for them to be CAPS  
-- so that they don't ???argue??? with C keywords  
+- so that they don't clash with C keywords  
 
 ## Usage  
   
