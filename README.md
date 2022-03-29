@@ -199,6 +199,7 @@ It has 3 forms:
 - FOR CLASSIC  
 - FOR RANGE  
 - FOR ARRAY  
+
 But they all have in common  
 ```  
 FOR something  
