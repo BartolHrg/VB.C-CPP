@@ -274,9 +274,9 @@ a defaults to 0, inc to 1, and b is required (except in [FOR ARRAY](#for-array) 
 If the type is not complex, parentheses can be omitted.   
 
 It can have  
-˙    PREP prep˙  
-˙    COND cond˙  
-˙    STEP step˙  
+`    PREP prep`  
+`    COND cond`  
+`    STEP step`  
 (each is optional)  
   
 In [FOR RANGE](#for-range) and [FOR ARRAY](#for-array) apart from its name, the loop can be referred to by its variable.  
@@ -305,9 +305,9 @@ Using them, you can slice the array (using lesser variable slice greater).
 e.g. upper triangle of the matrix (including diagonal) `(NORMAL, RANGE FROM i)` (j is sliced by i, the other way around is not possible).  
   
 It can have  
-˙    PREP prep˙  
-˙    COND cond˙  
-˙    STEP step˙  
+`    PREP prep`  
+`    COND cond`  
+`    STEP step`  
 (each is optional)  
 
 If the type is not complex, parentheses can be omitted.   
