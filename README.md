@@ -220,7 +220,7 @@ Loop defines a few scopes. The whole loop looks like
 }  
 ```  
 
-In each form there can be (prep, cond, step), more about that later ! ! ! !  ! ! ! ! ! ! ! ! ! ! !! ! ! ! !! ! ! ! ! ! !! ! ! ! in [???FOR CLASSIC???](#for-classic).  
+In each form there can be (prep, cond, step), more about that later.  
 It might be possible to use `WHILE` and `SKIP_IF` with FOR loop (but it is not standard yet).  
   
 #### FOR CLASSIC  
@@ -272,6 +272,12 @@ inc can be less than 0, or even equal to 0.
 Each is optional (you could write `RANGE UNTIL n`)  
 a defaults to 0, inc to 1, and b is required (except in [FOR ARRAY](#for-array) where it defaults to the length of the array)  
 If the type is not complex, parentheses can be omitted.   
+
+It can have  
+˙    PREP prep˙  
+˙    COND cond˙  
+˙    STEP step˙  
+(each is optional)  
   
 In [FOR RANGE](#for-range) and [FOR ARRAY](#for-array) apart from its name, the loop can be referred to by its variable.  
 
@@ -298,6 +304,12 @@ They corespond to position in array (i) / matrix (i, j) / cuboid (i, j, k).
 Using them, you can slice the array (using lesser variable slice greater).  
 e.g. upper triangle of the matrix (including diagonal) `(NORMAL, RANGE FROM i)` (j is sliced by i, the other way around is not possible).  
   
+It can have  
+˙    PREP prep˙  
+˙    COND cond˙  
+˙    STEP step˙  
+(each is optional)  
+
 If the type is not complex, parentheses can be omitted.   
   
 In [FOR RANGE](#for-range) and [FOR ARRAY](#for-array) apart from its name, the loop can be referred to by its variable.  
