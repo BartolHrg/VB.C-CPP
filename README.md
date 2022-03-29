@@ -416,7 +416,7 @@ CLion actually can offer completions for like members of a `STRUCT`.
 I'm planning to remove the required parentheses from `LOOP` and `FOR`  
 It would be nice to do the same for `WHILE` and `SKIP_IF`, if MSVC wasn't so uncool.  
   
-I'm planning to add the `FALLTHROUGH` keyword for [FORK CASE](#Control-flow:-switch). (again, hard because of MSVC)  
+I'm planning to add the `FALLTHROUGH` keyword for [FORK CASE](#Control-flow-switch). (again, hard because of MSVC)  
   
 I'm thinking of reviving VB.C++ (that was a thing for a short time during v2 (I think)).  
   
