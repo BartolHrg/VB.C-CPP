@@ -39,7 +39,7 @@ It compiles with any C compiler
 To use VB.C in your program  
 1) Copy [VB.H file](https://github.com/HeliumHe-He/VB.C-CPP/blob/main/VB.H) in your project  
 2) `#include` it  
-3) Write `VB_C_CODE(code)` here code should be the whole code in the file, except for `#includes` (VB_C_FILE is synonym for VB_C_CODE, though it's deprecated (you can leave it in old code))  
+3) Write `VB_C_CODE(code)` here code should be the any code that uses VB.C (typically the whole file), except for `#includes` (VB_C_FILE is synonym for VB_C_CODE, though it's deprecated (you can leave it in old code))  
 4) It is also recommended that you call your file with the .VB.c extension (or .VB.h)  
 so that tools aiming the VB.C can easily find the VB.C code  
   
