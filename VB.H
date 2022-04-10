@@ -2,8 +2,9 @@
 #define VB_H
 
 // #pragma region basic
-	#define __VB_C_FILE(...) __VA_ARGS__
-	#define VB_C_FILE(...) __VB_C_FILE(__VA_ARGS__)
+	#define __VB_C_CODE(...) __VA_ARGS__
+	#define VB_C_CODE(...) __VB_C_CODE(__VA_ARGS__)
+	#define VB_C_FILE VB_C_CODE
 
 	#define __VB_C_ARGS(...) __VA_ARGS__
 	

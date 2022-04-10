@@ -39,7 +39,7 @@ It compiles with any C compiler
 To use VB.C in your program  
 1) Copy [VB.H file](https://github.com/HeliumHe-He/VB.C-CPP/blob/main/VB.H) in your project  
 2) `#include` it  
-3) Write `VB_C_FILE(code)` here code should be the whole code in the file, except for `#includes`  
+3) Write `VB_C_CODE(code)` here code should be the whole code in the file, except for `#includes` (VB_C_FILE is synonym for VB_C_CODE, though not recommended (you can leave it in old code))  
 4) It is also recommended that you call your file with the .VB.c extension (or .VB.h)  
 so that tools aiming the VB.C can easily find the VB.C code  
   
@@ -355,11 +355,11 @@ You can also use an anonymous struct (e.g. `DECL a AS STRUCT ANONYMOUS decl END 
 `ANON` is a synonym for `ANONYMOUS`.  
 There is also limited support for generics  
 ```  
-#define Array(T, N) VB_C_FILE( STRUCT GENERIC \  
+#define Array(T, N) VB_C_CODE( STRUCT GENERIC \  
     decl                                      \  
 END )
 ```  
-The reason for this VB_C_FILE here will be explained in [Miscellaneous](#miscellaneous).  
+The reason for this VB_C_CODE here will be explained in [Miscellaneous](#miscellaneous).  
 notice also \ at ends of lines (except the last) (required by C)
   
 ### Enumerations  
@@ -392,7 +392,7 @@ For instantiation of arrays, there are
 `ZERO_ARRAY` to make the array full of zeroes.  
 `REST_ALL_ZEROS` to make other elements of array 0, used like ` = { 1, 5, 8, REST_ALL_ZEROS };`  
   
-When defining macros that use VB.C code, enclose that code in `VB_C_FILE`, so that it is usable even when some other program is not using VB.C.  
+When defining macros that use VB.C code, enclose that code in `VB_C_CODE`, so that it is usable even when some other program is not using VB.C.  
 
 It is not standard to prefix your identifiers wit VB_C or __VB_C as it may conflict with VB.H.  
 VB.H might define new keyword that will be ALL CAPS without those prefixes (sorry about that).  
@@ -405,7 +405,7 @@ Which means that it's not really safe to make ALL CAPS identifiers at all, thoug
 I'm not too happy about this project.  
 It made some wonderful things, but it also made some ugly.  
   
-First, every file has to be enclosed by VB_C_FILE, which is really not cool.  
+First, every file has to be enclosed by VB_C_CODE, which is really not cool.  
 Something even less cool is that error messages are bad:  
 you get a huge error message because a lot of macros are involved,  
 and you even don't know what line is erroneous, because C macros don't keep newlines (so everything is on the line where VB_C_FILE is)
@@ -435,8 +435,6 @@ I'm planning to remove the required parentheses from `LOOP` and `FOR`
 It would be nice to do the same for `WHILE` and `SKIP_IF`, if MSVC wasn't so uncool.  
   
 I'm planning to add the `FALLTHROUGH` keyword for [FORK CASE](#Control-flow-switch). (again, hard because of MSVC)  
-  
-I'm planning to add VB_C_CODE as synonym for VB_C_FILE (VB_C_FILE wouldn't be deprecated, just not recommended for new code)  
   
 I'm thinking of reviving VB.C++ (that was a thing for a short time during v2 (I think)).  
   
