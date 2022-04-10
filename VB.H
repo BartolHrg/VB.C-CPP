@@ -186,8 +186,6 @@
 
 		#define NORMAL   ), __VB_C_NORMAL_M,   (
 		#define REVERSED ), __VB_C_REVERSED_M, (
-		// #define ASCENDING ), __VB_C_ASCENDING_M, (
-		// #define DESCENDING ), __VB_C_DESCENDING_M, (
 		#define RANGE ), __VB_C_RANGE_M, (
 		#define FROM  ), __VB_C_FROM_M,  (
 		#define UNTIL ), __VB_C_UNTIL_M, (
@@ -248,29 +246,35 @@
 				#define __VB_C_FOR_RANGE_RESOLVE0__VB_C_RANGE_M(    n, I, _,       ...) __VB_C_FOR_RANGE_RESOLVE1       (n, I,                  __VA_ARGS__)
 				#define __VB_C_FOR_RANGE_RESOLVE0__VB_C_NORMAL_M(   n, I, _,       ...) (0), n, (1), n, I, __VA_ARGS__
 				
-				#define __VB_C_FOR_RANGE_RESOLVE1(               n, I, mark, ...) __VB_C_FOR_RANGE_RESOLVE1##mark (n, I,                                       __VA_ARGS__)
-				#define __VB_C_FOR_RANGE_RESOLVE1__VB_C_FROM_M(  n, I, a,    ...) __VB_C_FOR_RANGE_RESOLVE2       (n, I, a  ,                                  __VA_ARGS__)
-				#define __VB_C_FOR_RANGE_RESOLVE1__VB_C_UNTIL_M( n, I, b,    ...) __VB_C_FOR_RANGE_RESOLVE3       (   I, (0), b                           ,    __VA_ARGS__)
-				#define __VB_C_FOR_RANGE_RESOLVE1__VB_C_TO_M(    n, I, b,    ...) __VB_C_FOR_RANGE_RESOLVE3       (   I, (0), (b+1))                      ,    __VA_ARGS__)
-				#define __VB_C_FOR_RANGE_RESOLVE1__VB_C_BY_M(    n, I, d,    ...) __VB_C_FOR_RANGE_RESOLVE4       (   I, (0), (__VB_C_stop - __VB_C_start), d, __VA_ARGS__)
+				#define __VB_C_FOR_RANGE_RESOLVE1(               n, I, mark, ...) __VB_C_FOR_RANGE_RESOLVE1##mark (n, I,                 __VA_ARGS__)
+				#define __VB_C_FOR_RANGE_RESOLVE1__VB_C_FROM_M(  n, I, a,    ...) __VB_C_FOR_RANGE_RESOLVE2       (n, I, a  ,            __VA_ARGS__)
+				#define __VB_C_FOR_RANGE_RESOLVE1__VB_C_UNTIL_M( n, I, b,    ...) __VB_C_FOR_RANGE_RESOLVE3       (   I, (0), b     ,    __VA_ARGS__)
+				#define __VB_C_FOR_RANGE_RESOLVE1__VB_C_TO_M(    n, I, b,    ...) __VB_C_FOR_RANGE_RESOLVE3       (   I, (0), (b+1)),    __VA_ARGS__)
+				#define __VB_C_FOR_RANGE_RESOLVE1__VB_C_BY_M(    n, I, d,    ...) __VB_C_FOR_RANGE_RESOLVE4       (   I, (0), n     , d, __VA_ARGS__)
 				
-				#define __VB_C_FOR_RANGE_RESOLVE2(               n, I, a, mark, ...) __VB_C_FOR_RANGE_RESOLVE2##mark (n, I, a,                                  __VA_ARGS__)
-				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_UNTIL_M( n, I, a, b,    ...) __VB_C_FOR_RANGE_RESOLVE3       (   I, a, b                           ,    __VA_ARGS__)
-				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_TO_M(    n, I, a, b,    ...) __VB_C_FOR_RANGE_RESOLVE3       (   I, a, (b+1)                       ,    __VA_ARGS__)
-				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_BY_M(    n, I, a, d,    ...) __VB_C_FOR_RANGE_RESOLVE4       (   I, a, (__VB_C_stop - __VB_C_start), d, __VA_ARGS__)
+				#define __VB_C_FOR_RANGE_RESOLVE2(               n, I, a, mark, ...) __VB_C_FOR_RANGE_RESOLVE2##mark (n, I, a,           __VA_ARGS__)
+				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_UNTIL_M( n, I, a, b,    ...) __VB_C_FOR_RANGE_RESOLVE3       (   I, a, b    ,    __VA_ARGS__)
+				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_TO_M(    n, I, a, b,    ...) __VB_C_FOR_RANGE_RESOLVE3       (   I, a, (b+1),    __VA_ARGS__)
+				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_BY_M(    n, I, a, d,    ...) __VB_C_FOR_RANGE_RESOLVE4       (   I, a, n    , d, __VA_ARGS__)
 				// all endings
-				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_START_M(    n, I, a, ...) a                          , n, (1), (__VB_C_stop - __VB_C_start), I, __VB_C_START_M,    __VA_ARGS__
+				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_PREP_M(     n, I, a, ...) a                          , n, (1), (__VB_C_stop - __VB_C_start), I, __VB_C_PREP_M    , __VA_ARGS__
+				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_COND_M(     n, I, a, ...) a                          , n, (1), (__VB_C_stop - __VB_C_start), I, __VB_C_COND_M    , __VA_ARGS__
+				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_STEP_M(     n, I, a, ...) a                          , n, (1), (__VB_C_stop - __VB_C_start), I, __VB_C_STEP_M    , __VA_ARGS__
+				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_START_M(    n, I, a, ...) a                          , n, (1), (__VB_C_stop - __VB_C_start), I, __VB_C_START_M   , __VA_ARGS__
 				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_REVERSED_M( n, I, a, ...) __VB_C_FIRST(__VB_C_ROB(a)), n, (1), (__VB_C_stop - __VB_C_start), I, __VB_C_REVERSED_M, __VA_ARGS__
-				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_RANGE_M(    n, I, a, ...) __VB_C_FIRST(__VB_C_ROB(a)), n, (1), (__VB_C_stop - __VB_C_start), I, __VB_C_RANGE_M,    __VA_ARGS__
-				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_NORMAL_M(   n, I, a, ...) __VB_C_FIRST(__VB_C_ROB(a)), n, (1), (__VB_C_stop - __VB_C_start), I, __VB_C_NORMAL_M,   __VA_ARGS__
+				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_RANGE_M(    n, I, a, ...) __VB_C_FIRST(__VB_C_ROB(a)), n, (1), (__VB_C_stop - __VB_C_start), I, __VB_C_RANGE_M   , __VA_ARGS__
+				#define __VB_C_FOR_RANGE_RESOLVE2__VB_C_NORMAL_M(   n, I, a, ...) __VB_C_FIRST(__VB_C_ROB(a)), n, (1), (__VB_C_stop - __VB_C_start), I, __VB_C_NORMAL_M  , __VA_ARGS__
 	
 				#define __VB_C_FOR_RANGE_RESOLVE3(            I, a, b, mark, ...) __VB_C_FOR_RANGE_RESOLVE3##mark (I, a, b,    __VA_ARGS__)
 				#define __VB_C_FOR_RANGE_RESOLVE3__VB_C_BY_M( I, a, b, d,    ...) __VB_C_FOR_RANGE_RESOLVE4       (I, a, b, d, __VA_ARGS__)
 				// all endings
-				#define __VB_C_FOR_RANGE_RESOLVE3__VB_C_START_M(    I, a, b, ...) a, b                          , (1), (__VB_C_stop - __VB_C_start), I, __VB_C_START_M,    __VA_ARGS__
+				#define __VB_C_FOR_RANGE_RESOLVE3__VB_C_PREP_M(     I, a, b, ...) a, b                          , (1), (__VB_C_stop - __VB_C_start), I, __VB_C_PREP_M    , __VA_ARGS__
+				#define __VB_C_FOR_RANGE_RESOLVE3__VB_C_COND_M(     I, a, b, ...) a, b                          , (1), (__VB_C_stop - __VB_C_start), I, __VB_C_COND_M    , __VA_ARGS__
+				#define __VB_C_FOR_RANGE_RESOLVE3__VB_C_STEP_M(     I, a, b, ...) a, b                          , (1), (__VB_C_stop - __VB_C_start), I, __VB_C_STEP_M    , __VA_ARGS__
+				#define __VB_C_FOR_RANGE_RESOLVE3__VB_C_START_M(    I, a, b, ...) a, b                          , (1), (__VB_C_stop - __VB_C_start), I, __VB_C_START_M   , __VA_ARGS__
 				#define __VB_C_FOR_RANGE_RESOLVE3__VB_C_REVERSED_M( I, a, b, ...) a, __VB_C_FIRST(__VB_C_ROB(b)), (1), (__VB_C_stop - __VB_C_start), I, __VB_C_REVERSED_M, __VA_ARGS__
-				#define __VB_C_FOR_RANGE_RESOLVE3__VB_C_RANGE_M(    I, a, b, ...) a, __VB_C_FIRST(__VB_C_ROB(b)), (1), (__VB_C_stop - __VB_C_start), I, __VB_C_RANGE_M,    __VA_ARGS__
-				#define __VB_C_FOR_RANGE_RESOLVE3__VB_C_NORMAL_M(   I, a, b, ...) a, __VB_C_FIRST(__VB_C_ROB(b)), (1), (__VB_C_stop - __VB_C_start), I, __VB_C_NORMAL_M,   __VA_ARGS__
+				#define __VB_C_FOR_RANGE_RESOLVE3__VB_C_RANGE_M(    I, a, b, ...) a, __VB_C_FIRST(__VB_C_ROB(b)), (1), (__VB_C_stop - __VB_C_start), I, __VB_C_RANGE_M   , __VA_ARGS__
+				#define __VB_C_FOR_RANGE_RESOLVE3__VB_C_NORMAL_M(   I, a, b, ...) a, __VB_C_FIRST(__VB_C_ROB(b)), (1), (__VB_C_stop - __VB_C_start), I, __VB_C_NORMAL_M  , __VA_ARGS__
 	
 				#define __VB_C_FOR_RANGE_RESOLVE4( I, a, b, d, ...) a, b, __VB_C_FIRST(__VB_C_ROB(d)), (((__VB_C_delta == 0) ? (__VB_C_stop - __VB_C_start) : (__VB_C_stop - __VB_C_start + (__VB_C_delta > 0 ? __VB_C_delta-1 : __VB_C_delta + 1)) / __VB_C_delta)), I, __VA_ARGS__
 			// #pragma endregion
@@ -285,8 +289,8 @@
 			#define __VB_C_FOR_ARRAY__VB_C_CUBOID_M( label, labels, next_l, after_l, break_l, var, arr, type, size, ...) __VB_C_FOR_ARRAY_C (label, labels, next_l, after_l, break_l, var, arr, type, size, __VA_ARGS__)
 			
 			// #pragma region ARRAY
-				#define __VB_C_FOR_ARRAY_A(                  label, labels, next_l, after_l, break_l, var, arr, type, m, mark,    ...)                       __VB_C_FOR_ARRAY_A##mark(label, labels, next_l, after_l, break_l, var, arr, type, m, (m, i, , __VB_C_NORMAL_M, ), __VA_ARGS__)
-				#define __VB_C_FOR_ARRAY_A__VB_C_SLICED_M(   label, labels, next_l, after_l, break_l, var, arr, type, m, slicing, _, by_m, slice, mark, ...) __VB_C_FOR_ARRAY_A##mark(label, labels, next_l, after_l, break_l, var, arr, type, m, (m, i, __VB_C_RRB(slice))  , __VA_ARGS__)
+				#define __VB_C_FOR_ARRAY_A(                  label, labels, next_l, after_l, break_l, var, arr, type, m, mark,    ...)                       __VB_C_FOR_ARRAY_A##mark(label, labels, next_l, after_l, break_l, var, arr, type, m, (m, __VB_C_i, , __VB_C_NORMAL_M, ), __VA_ARGS__)
+				#define __VB_C_FOR_ARRAY_A__VB_C_SLICED_M(   label, labels, next_l, after_l, break_l, var, arr, type, m, slicing, _, by_m, slice, mark, ...) __VB_C_FOR_ARRAY_A##mark(label, labels, next_l, after_l, break_l, var, arr, type, m, (m, __VB_C_i, __VB_C_RRB(slice))  , __VA_ARGS__)
 				#define __VB_C_FOR_ARRAY_A__VB_C_REVERSED_M( label, labels, next_l, after_l, break_l, var, arr, type, m, slicing, x,              mark, ...) __VB_C_FOR_ARRAY_A##mark(label, labels, next_l, after_l, break_l, var, arr, type, m, (__VB_C_RRB(slicing), __VB_C_REVERSED_M, x), __VA_ARGS__)
 				#define __VB_C_FOR_ARRAY_A__VB_C_NORMAL_M(   label, labels, next_l, after_l, break_l, var, arr, type, m, slicing, x,              mark, ...) __VB_C_FOR_ARRAY_A##mark(label, labels, next_l, after_l, break_l, var, arr, type, m, (__VB_C_RRB(slicing), __VB_C_NORMAL_M  , x), __VA_ARGS__)
 				#define __VB_C_FOR_ARRAY_A__VB_C_RANGE_M(    label, labels, next_l, after_l, break_l, var, arr, type, m, slicing, x,              mark, ...) __VB_C_FOR_ARRAY_A##mark(label, labels, next_l, after_l, break_l, var, arr, type, m, (__VB_C_RRB(slicing), __VB_C_RANGE_M   , x), __VA_ARGS__)
@@ -302,19 +306,19 @@
 				#define __VB_C_FOR_ARRAY_A0(...)                                                                                                                  __VB_C_FOR_ARRAY_A1(__VA_ARGS__)
 				#define __VB_C_FOR_ARRAY_A1(                 label, labels, next_l, after_l, break_l, var, arr, type, m, s, e, d, n, t, _, prep, cond, step, ...) __VB_C_FOR_ARRAY_A2(label, labels, next_l, after_l, break_l, var, arr, type, m, s, e, d, n, t, prep, cond, step, __VB_C_FOR_BODY_RESOLVE(__VA_ARGS__))
 				#define __VB_C_FOR_ARRAY_A2(...)                                                                                                                  __VB_C_FOR_ARRAY_A3(__VA_ARGS__)
-				#define __VB_C_FOR_ARRAY_A3(                 label, labels, next_l, after_l, break_l, var, arr, type, m, s, e, d, n, t,    prep, cond, step, body, didnt_break, ...) __VB_C_FOR_FINAL(label, labels, next_l, after_l, break_l, (long const __VB_C_start = s; long const __VB_C_stop = e; long const __VB_C_delta = d; long const __VB_C_n = n;), (for (long __VB_C_i = 0; __VB_C_i < __VB_C_n; ++__VB_C_i) { long i = __VB_C_start + __VB_C_delta * t; {{), (__VB_C_DECL_RESOLVE((*var), type) = &arr[i]; __VB_C_RRB(prep)), cond, step, body, didnt_break, __VA_ARGS__)
+				#define __VB_C_FOR_ARRAY_A3(                 label, labels, next_l, after_l, break_l, var, arr, type, m, s, e, d, n, t,    prep, cond, step, body, didnt_break, ...) __VB_C_FOR_FINAL(label, labels, next_l, after_l, break_l, (long const __VB_C_start = s; long const __VB_C_stop = e; long const __VB_C_delta = d; long const __VB_C_n = n;), (for (long __VB_C_i = 0; __VB_C_i < __VB_C_n; ++__VB_C_i) { long i = __VB_C_start + __VB_C_delta * t; {{), (__VB_C_DECL_RESOLVE((*var), type) = &((__VB_C_DECL_RESOLVE((*), type))arr)[i]; __VB_C_RRB(prep)), cond, step, body, didnt_break, __VA_ARGS__)
 			// #pragma endregion
 			
 			// #pragma region MATRIX
-				#define __VB_C_FOR_ARRAY_M(                  label, labels, next_l, after_l, break_l, var, arr, type, m, n, mark,    ...)                       __VB_C_FOR_ARRAY_M##mark(label, labels, next_l, after_l, break_l, var, arr, type, m, n, (m, i, , __VB_C_NORMAL_M, (,), __VB_C_NORMAL_M, ), __VA_ARGS__)
-				#define __VB_C_FOR_ARRAY_M__VB_C_SLICED_M(   label, labels, next_l, after_l, break_l, var, arr, type, m, n, slicing, _, by_m, slice, mark, ...) __VB_C_FOR_ARRAY_M##mark(label, labels, next_l, after_l, break_l, var, arr, type, m, n, (m, i, __VB_C_RRB(slice))  , __VA_ARGS__)
+				#define __VB_C_FOR_ARRAY_M(                  label, labels, next_l, after_l, break_l, var, arr, type, m, n, mark,    ...)                       __VB_C_FOR_ARRAY_M##mark(label, labels, next_l, after_l, break_l, var, arr, type, m, n, (m, __VB_C_i, , __VB_C_NORMAL_M, (,), __VB_C_NORMAL_M, ), __VA_ARGS__)
+				#define __VB_C_FOR_ARRAY_M__VB_C_SLICED_M(   label, labels, next_l, after_l, break_l, var, arr, type, m, n, slicing, _, by_m, slice, mark, ...) __VB_C_FOR_ARRAY_M##mark(label, labels, next_l, after_l, break_l, var, arr, type, m, n, (m, __VB_C_i, __VB_C_RRB(slice))  , __VA_ARGS__)
 				#define __VB_C_FOR_ARRAY_M__VB_C_PREP_M(     label, labels, next_l, after_l, break_l, var, arr, type, m, n, slicing, ...)                       __VB_C_FOR_ARRAY_M0     (label, labels, next_l, after_l, break_l, var, arr, type, m, n, __VB_C_FOR_RANGE_RESOLVE(__VB_C_RRB(slicing), __VB_C_START_M), __VB_C_FOR_CLASSIC_RESOLVE(__VB_C_PREP_M , __VA_ARGS__))
 				#define __VB_C_FOR_ARRAY_M__VB_C_COND_M(     label, labels, next_l, after_l, break_l, var, arr, type, m, n, slicing, ...)                       __VB_C_FOR_ARRAY_M0     (label, labels, next_l, after_l, break_l, var, arr, type, m, n, __VB_C_FOR_RANGE_RESOLVE(__VB_C_RRB(slicing), __VB_C_START_M), __VB_C_FOR_CLASSIC_RESOLVE(__VB_C_COND_M , __VA_ARGS__))
 				#define __VB_C_FOR_ARRAY_M__VB_C_STEP_M(     label, labels, next_l, after_l, break_l, var, arr, type, m, n, slicing, ...)                       __VB_C_FOR_ARRAY_M0     (label, labels, next_l, after_l, break_l, var, arr, type, m, n, __VB_C_FOR_RANGE_RESOLVE(__VB_C_RRB(slicing), __VB_C_START_M), __VB_C_FOR_CLASSIC_RESOLVE(__VB_C_STEP_M , __VA_ARGS__))
 				#define __VB_C_FOR_ARRAY_M__VB_C_START_M(    label, labels, next_l, after_l, break_l, var, arr, type, m, n, slicing, ...)                       __VB_C_FOR_ARRAY_M0     (label, labels, next_l, after_l, break_l, var, arr, type, m, n, __VB_C_FOR_RANGE_RESOLVE(__VB_C_RRB(slicing), __VB_C_START_M), __VB_C_FOR_CLASSIC_RESOLVE(__VB_C_START_M, __VA_ARGS__))
 				
 				#define __VB_C_FOR_ARRAY_M0(...)                                                                                                                                              __VB_C_FOR_ARRAY_M1(__VA_ARGS__)
-				#define __VB_C_FOR_ARRAY_M1(                 label, labels, next_l, after_l, break_l, var, arr, type, m, n, si, ei, di, ni, ti, ...)                                          __VB_C_FOR_ARRAY_M2(label, labels, next_l, after_l, break_l, var, arr, type, m, n, si, ei, di, ni, ti, __VB_C_FOR_RANGE_RESOLVE(n, j, , __VA_ARGS__)) // prep, cond, step, __VB_C_FOR_BODY_RESOLVE(__VA_ARGS__))
+				#define __VB_C_FOR_ARRAY_M1(                 label, labels, next_l, after_l, break_l, var, arr, type, m, n, si, ei, di, ni, ti, ...)                                          __VB_C_FOR_ARRAY_M2(label, labels, next_l, after_l, break_l, var, arr, type, m, n, si, ei, di, ni, ti, __VB_C_FOR_RANGE_RESOLVE(n, __VB_C_j, , __VA_ARGS__)) // prep, cond, step, __VB_C_FOR_BODY_RESOLVE(__VA_ARGS__))
 				#define __VB_C_FOR_ARRAY_M2(...)                                                                                                                                              __VB_C_FOR_ARRAY_M3(__VA_ARGS__)
 				#define __VB_C_FOR_ARRAY_M3(                 label, labels, next_l, after_l, break_l, var, arr, type, m, n, si, ei, di, ni, ti, sj, ej, dj, nj, tj, _, prep, cond, step, ...) __VB_C_FOR_ARRAY_M4(label, labels, next_l, after_l, break_l, var, arr, type, m, n, si, ei, di, ni, ti, sj, ej, dj, nj, tj, prep, cond, step, __VB_C_FOR_BODY_RESOLVE(__VA_ARGS__))
 				#define __VB_C_FOR_ARRAY_M4(...)                                                                                                                                              __VB_C_FOR_ARRAY_M5(__VA_ARGS__)
@@ -322,19 +326,18 @@
 			// #pragma endregion
 			
 			// #pragma region CUBOID
-				#define __VB_C_FOR_ARRAY_C(                  label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, mark,    ...)                       __VB_C_FOR_ARRAY_C##mark(label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, (m, i, , __VB_C_NORMAL_M, (,), __VB_C_NORMAL_M, (,), __VB_C_NORMAL_M, ), __VA_ARGS__)
-				#define __VB_C_FOR_ARRAY_C__VB_C_SLICED_M(   label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, slicing, _, by_m, slice, mark, ...) __VB_C_FOR_ARRAY_C##mark(label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, (m, i, __VB_C_RRB(slice))  , __VA_ARGS__)
+				#define __VB_C_FOR_ARRAY_C(                  label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, mark,    ...)                       __VB_C_FOR_ARRAY_C##mark(label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, (m, __VB_C_i, , __VB_C_NORMAL_M, (,), __VB_C_NORMAL_M, (,), __VB_C_NORMAL_M, ), __VA_ARGS__)
+				#define __VB_C_FOR_ARRAY_C__VB_C_SLICED_M(   label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, slicing, _, by_m, slice, mark, ...) __VB_C_FOR_ARRAY_C##mark(label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, (m, __VB_C_i, __VB_C_RRB(slice))  , __VA_ARGS__)
 				#define __VB_C_FOR_ARRAY_C__VB_C_PREP_M(     label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, slicing, ...)                       __VB_C_FOR_ARRAY_C0     (label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, __VB_C_FOR_RANGE_RESOLVE(__VB_C_RRB(slicing), __VB_C_START_M), __VB_C_FOR_CLASSIC_RESOLVE(__VB_C_PREP_M , __VA_ARGS__))
 				#define __VB_C_FOR_ARRAY_C__VB_C_COND_M(     label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, slicing, ...)                       __VB_C_FOR_ARRAY_C0     (label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, __VB_C_FOR_RANGE_RESOLVE(__VB_C_RRB(slicing), __VB_C_START_M), __VB_C_FOR_CLASSIC_RESOLVE(__VB_C_COND_M , __VA_ARGS__))
 				#define __VB_C_FOR_ARRAY_C__VB_C_STEP_M(     label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, slicing, ...)                       __VB_C_FOR_ARRAY_C0     (label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, __VB_C_FOR_RANGE_RESOLVE(__VB_C_RRB(slicing), __VB_C_START_M), __VB_C_FOR_CLASSIC_RESOLVE(__VB_C_STEP_M , __VA_ARGS__))
 				#define __VB_C_FOR_ARRAY_C__VB_C_START_M(    label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, slicing, ...)                       __VB_C_FOR_ARRAY_C0     (label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, __VB_C_FOR_RANGE_RESOLVE(__VB_C_RRB(slicing), __VB_C_START_M), __VB_C_FOR_CLASSIC_RESOLVE(__VB_C_START_M, __VA_ARGS__))
 				
 				#define __VB_C_FOR_ARRAY_C0(...)                                                                                                                                                                     __VB_C_FOR_ARRAY_C1(__VA_ARGS__)
-				#define __VB_C_FOR_ARRAY_C1(                 label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, si, ei, di, ni, ti, ...)                                                              __VB_C_FOR_ARRAY_C2(label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, si, ei, di, ni, ti, __VB_C_FOR_RANGE_RESOLVE(n, j, , __VA_ARGS__)) // prep, cond, step, __VB_C_FOR_BODY_RESOLVE(__VA_ARGS__))
+				#define __VB_C_FOR_ARRAY_C1(                 label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, si, ei, di, ni, ti, ...)                                                              __VB_C_FOR_ARRAY_C2(label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, si, ei, di, ni, ti, __VB_C_FOR_RANGE_RESOLVE(n, __VB_C_j, , __VA_ARGS__)) // prep, cond, step, __VB_C_FOR_BODY_RESOLVE(__VA_ARGS__))
 				#define __VB_C_FOR_ARRAY_C2(...)                                                                                                                                                                     __VB_C_FOR_ARRAY_C3(__VA_ARGS__)
-				#define __VB_C_FOR_ARRAY_C3(                 label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, si, ei, di, ni, ti, sj, ej, dj, nj, tj, ...)                                          __VB_C_FOR_ARRAY_C4(label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, si, ei, di, ni, ti, sj, ej, dj, nj, tj, __VB_C_FOR_RANGE_RESOLVE(o, k, , __VA_ARGS__))
+				#define __VB_C_FOR_ARRAY_C3(                 label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, si, ei, di, ni, ti, sj, ej, dj, nj, tj, ...)                                          __VB_C_FOR_ARRAY_C4(label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, si, ei, di, ni, ti, sj, ej, dj, nj, tj, __VB_C_FOR_RANGE_RESOLVE(o, __VB_C_k, , __VA_ARGS__))
 				#define __VB_C_FOR_ARRAY_C4(...)                                                                                                                                                                     __VB_C_FOR_ARRAY_C5(__VA_ARGS__)
-				// #define __VB_C_FOR_ARRAY_C5(...) #__VA_ARGS__
 				#define __VB_C_FOR_ARRAY_C5(                 label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, si, ei, di, ni, ti, sj, ej, dj, nj, tj, sk, ek, dk, nk, tk, _, prep, cond, step, ...) __VB_C_FOR_ARRAY_C6(label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, si, ei, di, ni, ti, sj, ej, dj, nj, tj, sk, ek, dk, nk, tk, prep, cond, step, __VB_C_FOR_BODY_RESOLVE(__VA_ARGS__))
 				#define __VB_C_FOR_ARRAY_C6(...)                                                                                                                                                                     __VB_C_FOR_ARRAY_C7(__VA_ARGS__)
 				#define __VB_C_FOR_ARRAY_C7(                 label, labels, next_l, after_l, break_l, var, arr, type, m, n, o, si, ei, di, ni, ti, sj, ej, dj, nj, tj, sk, ek, dk, nk, tk,    prep, cond, step, body, didnt_break, ...) __VB_C_FOR_FINAL(label, labels, next_l, after_l, break_l, (long const __VB_C_start = si; long const __VB_C_stop = ei; long const __VB_C_delta = di; long const __VB_C_n = ni;), (for (long __VB_C_i = 0; __VB_C_i < __VB_C_n; ++__VB_C_i) { long const i = __VB_C_start + __VB_C_delta * ti; long const __VB_C_start = sj; long const __VB_C_stop = ej; long const __VB_C_delta = dj; long const __VB_C_n = nj; for (long __VB_C_j = 0; __VB_C_j < __VB_C_n; ++__VB_C_j) { long const j = __VB_C_start + __VB_C_delta + tj; long const __VB_C_start = sk; long const __VB_C_stop = ek; long const __VB_C_delta = dk; long const __VB_C_n = nk; for (long __VB_C_k = 0; __VB_C_k < __VB_C_n; ++__VB_C_k) { long const k = __VB_C_start + __VB_C_delta + tk; ), (__VB_C_DECL_RESOLVE((*var), type) = &CAST(arr AS POINTER TO ARRAY OF __VB_C_ROB_IF_2(type) OF SIZE [n][o])[i][j][k]; __VB_C_RRB(prep)), cond, step, body, didnt_break, __VA_ARGS__)
@@ -351,61 +354,6 @@
 		#define __VB_C_FOR_FINAL(...) __VB_C_FOR_FINAL0(__VA_ARGS__)
 		// #define __VB_C_FOR_FINAL0(label, labels, next_l, after_l, break_l, decl, loop, prep, cond, step, body, didnt_break, ...) { __VB_C_LOCAL_LABELS(__VB_C_RRB(labels)); __VB_C_RRB(decl) /*char __VB_C_broke = 0, __VB_C_first = 1*/; __VB_C_RRB(loop) { if (!__VB_C_first) {__VB_C_RRB(step)} __VB_C_first=0; __VB_C_RRB(prep) if (!cond) {BREAK;} __VB_C_RRB(body) } }} if (!__VB_C_broke) { __VB_C_RRB(didnt_break) } }
 		#define __VB_C_FOR_FINAL0(label, labels, next_l, after_l, break_l, decl, loop, prep, cond, step, body, didnt_break, ...) { __VB_C_LOCAL_LABELS(__VB_C_RRB(labels)); __VB_C_RRB(decl) __VB_C_RRB(loop)  __VB_C_RRB(prep) if (!cond) {goto VB_C_LABEL(label, AFTER);} __VB_C_RRB(body) next_l __VB_C_RRB(step) } }} after_l __VB_C_RRB(didnt_break) break_l }
-		
-		
-		// #define __VB_C_FOR_RANGE__VB_C_REVERSED_M
-		// #define __VB_C_FOR_RANGE__VB_C_RANGE_M
-		
-		// #define __VB_C_FOR__VB_C_AS_M(decl, type, in_mark, _, mark, ...) __VB_C_FOR_RANGE##mark(decl, type, __VA_ARGS__)
-		
-	
-	
-		// #define __VB_C_FOR2__VB_C_STEP_M(decl, prep, cond, step, _, body, ...)  __VB_C_FOR_(decl, prep, cond, step, body)
-		// #define __VB_C_FOR2__VB_C_START_M(decl, prep, cond, body, ...)          __VB_C_FOR_(decl, prep, cond, (  ), body)
-		// #define __VB_C_FOR__VB_C_PREP_M(decl, prep, _, cond, mark, ...) __VB_C_FOR2##mark(decl, prep, cond, __VA_ARGS__)
-		// #define __VB_C_FOR__VB_C_COND_M(decl, cond, mark, ...)          __VB_C_FOR2##mark(decl, (  ), cond, __VA_ARGS__)
-
-		// #define __VB_C_FOR__VB_C_AS_M(var, type, mark, ...) __VB_C_FOR1##mark(var, type, __VA_ARGS__)
-		// #define __VB_C_FOR1__VB_C_IN_M(var, type, _, mark, ...) __VB_C_FOR##mark(var, type, __VA_ARGS__)
-		// #define __VB_C_FOR__VB_C_IN_M(var, _, mark, ...) __VB_C_FOR##mark(var, int, __VA_ARGS__)
-		// #define __VB_C_FOR__VB_C_REVERSED_M(var, type, _, mark, ...) __VB_C_FOR1##mark(var, type, __VB_C_RANGE_REVERSED_M, __VA_ARGS__)
-		// #define __VB_C_FOR1__VB_C_RANGE_M(var, type, asc_m, start, mark, ...) __VB_C_FOR_RANGE##mark(var, type, asc_m, start, __VA_ARGS__)
-		// #define __VB_C_FOR__VB_C_RANGE_M(var, type, start, mark, ...) __VB_C_FOR_RANGE##mark(var, type, __VB_C_RANGE_ASCENDING_M, start, __VA_ARGS__)
-		// #define __VB_C_FOR_RANGE__VB_C_UNTIL_M(var, type, rev_m, start, end, mark, ...) __VB_C_FOR_RANGE##mark(var, type, rev_m, start, <, end, __VA_ARGS__)
-		// #define __VB_C_FOR_RANGE__VB_C_TO_M(var, type, rev_m, start, end, mark, ...) __VB_C_FOR_RANGE##mark(var, type, rev_m, start, <=, end, __VA_ARGS__)
-		// #define __VB_C_FOR_RANGE__VB_C_BY_M(var, type, rev_m, start, cmp, end, by, mark, ...) __VB_C_FOR_RANGE1##mark(var, type, rev_m, start, cmp, end, by, __VA_ARGS__)
-		// #define __VB_C_FOR_RANGE1__VB_C_START_M(var, type, rev_m, start, cmp, end, by, body, mark, ...) __VB_C_FOR_RANGE##mark(var, type, rev_m, start, cmp, end, by, body, __VA_ARGS__)
-		// #define __VB_C_FOR_RANGE__VB_C_START_M(var, type, rev_m, start, cmp, end, body, mark, ...) __VB_C_FOR_RANGE##mark(var, type, rev_m, start, cmp, end, 1, body, __VA_ARGS__)
-		// #define __VB_C_FOR_RANGE__VB_C_END_M(var, type, rev_m, start, cmp, end, by, body, ...) __VB_C_FOR_RANGE__VB_C_END_M1(__VB_C_ROB(var), type, rev_m, start, cmp, end, by, body)
-		// #define __VB_C_FOR_RANGE__VB_C_END_M1(var, type, rev_m, start, cmp, end, by, body, ...) __VB_C_FOR_RANGE##rev_m(var, type, start, cmp, end, by, body)
-		// #define __VB_C_FOR_RANGE__VB_C_RANGE_ASCENDING_M(var, type, start, cmp, end, by, body)  __VB_C_FOR_RANGE(var, type, start, cmp, end,  by, (__VB_C_ROB(type) var = __VB_C_start + __VB_C_by * __VB_C_##var), body, ())
-		// #define __VB_C_FOR_RANGE__VB_C_RANGE_DESCENDING_M(var, type, start, cmp, end, by, body) __VB_C_FOR_RANGE(var, type, start, cmp, end, -by, (__VB_C_ROB(type) var = __VB_C_start + __VB_C_by * __VB_C_##var), body, ())
-		// #define __VB_C_FOR_RANGE__VB_C_RANGE_REVERSED_M(var, type, start, cmp, end, by, body)    __VB_C_FOR_RANGE(var, type, start, cmp, end,  by, (__VB_C_ROB(type) var = __VB_C_pad   - __VB_C_by * __VB_C_##var), body, (__VB_C_ROB(type) const __VB_C_pad = __VB_C_start + (__VB_C_n - 1) * __VB_C_by;))
-		// #define __VB_C_FOR_RANGE(var, type, start, cmp, end, by, transform, body, init) {                         \
-		// 	__VB_C_ROB(type) const __VB_C_start = start;                                                                                 \
-		// 	__VB_C_ROB(type) const __VB_C_end = end;                                                                                 \
-		// 	__VB_C_ROB(type) const __VB_C_by = by;                                                                                 \
-		// 	__VB_C_ROB(type) const __VB_C_n = (__VB_C_end - __VB_C_start + (__VB_C_by > 0 ? -1 : +1)) / __VB_C_by + 1;                                               \
-		// 	__VB_C_ROB(init)                                                                                      \
-		// 	for (__VB_C_ROB(type) __VB_C_##var = 0; __VB_C_##var cmp __VB_C_n; ++__VB_C_##var) {             \
-		// 		__VB_C_ROB(transform);                                                                             \
-		// 		__VB_C_ROB(body)                                                                                  \
-		// 	}                                                                                                         \
-		// }
-		// #define __VB_C_FOR_(decl, prep, cond, step, body, ...) {      \
-		// 	__VB_C_ROB(decl)                                          \
-		// 	char __VB_C_is_first = true;                              \
-		// 	while(1) {                                                    \
-		// 		if (!__VB_C_is_first) {                               \
-		// 			__VB_C_ROB(step)                                  \
-		// 		} else {                                                  \
-		// 			__VB_C_is_first = false;                          \
-		// 		}                                                         \
-		// 		__VB_C_ROB(prep)                                      \
-		// 		if (!cond) break;                                         \
-		// 		__VB_C_ROB(body)                                      \
-		// 	}                                                             \
-		// }
 	// #pragma endregion
 // #pragma endregion
 
@@ -441,8 +389,6 @@
 		#define LOCAL_DEFINE_ONCE static
 		
 		#define ARRAY  ), __VB_C_ARRAY_M , (
-		// #define MATRIX ), __VB_C_MATRIX_M, (
-		// #define CUBOID ), __VB_C_CUBOID_M, (
 		#define ZERO_ARRAY {0}
 		#define REST_ALL_ZEROS
 
@@ -531,56 +477,7 @@
 			#define __VB_C_TYPE_RESOLVE9__VB_C_POINTER_M( name, _,     q, to_m,                                 ... ) __VB_C_TYPE_RESOLVE10((*__VB_C_RRB(q) name),    __VA_ARGS__)
 			#define __VB_C_TYPE_RESOLVE9__VB_C_FUNC_M(    name, _,     q, of_m, args, ret_m,                    ... ) __VB_C_TYPE_RESOLVE10((*__VB_C_RRB(q) name) __VB_C_ROB(args), __VA_ARGS__)
 			#define __VB_C_TYPE_RESOLVE9__VB_C_ARRAY_M(   name, _,    __, of_m, type, of_m2, ___, size_m, size, ... ) (__VB_C_FIRST(__VB_C_TYPE_RESOLVE10((name __VB_C_ROB(size)), __VB_C_ROB_IF_2(type), __VB_C_END_M))), __VA_ARGS__			
-			// #define __VB_C_TYPE_RESOLVE__VB_C_AS_M(        name, type, mark,      ...) __VB_C_TYPE_RESOLVE_AS##mark(name, type, __VA_ARGS__)          
-			// #define __VB_C_TYPE_RESOLVE_AS__VB_C_START_M(  name, type,            ...) (__VB_C_ROB(type) name)                , __VB_C_START_M , __VA_ARGS__
-			// #define __VB_C_TYPE_RESOLVE_AS__VB_C_END_M(    name, type,            ...) (__VB_C_ROB(type) name)                , __VB_C_END_M   , __VA_ARGS__
-			// #define __VB_C_TYPE_RESOLVE_AS__VB_C_ARRAY_M(  name, type, dim, mark, ...) (__VB_C_ROB(type) name __VB_C_ROB(dim)), mark,            __VA_ARGS__                
-			// #define __VB_C_TYPE_RESOLVE_AS__VB_C_MATRIX_M( name, type, dim, mark, ...) (__VB_C_ROB(type) name __VB_C_ROB(dim)), mark,            __VA_ARGS__                
-			// #define __VB_C_TYPE_RESOLVE_AS__VB_C_CUBOID_M( name, type, dim, mark, ...) (__VB_C_ROB(type) name __VB_C_ROB(dim)), mark,            __VA_ARGS__                
-		
-			// #define __VB_C_TYPE_RESOLVE0__VB_C_AS_M(       name, type, mark, ...) __VB_C_TYPE_RESOLVE0_AS##mark(name, type, __VA_ARGS__)
-			// #define __VB_C_TYPE_RESOLVE0_AS__VB_C_START_M  __VB_C_TYPE_RESOLVE_AS__VB_C_START_M        
-			// #define __VB_C_TYPE_RESOLVE0_AS__VB_C_END_M    __VB_C_TYPE_RESOLVE_AS__VB_C_END_M      
-			// #define __VB_C_TYPE_RESOLVE0_AS__VB_C_ARRAY_M  __VB_C_TYPE_RESOLVE_AS__VB_C_ARRAY_M        
-			// #define __VB_C_TYPE_RESOLVE0_AS__VB_C_MATRIX_M __VB_C_TYPE_RESOLVE_AS__VB_C_MATRIX_M         
-			// #define __VB_C_TYPE_RESOLVE0_AS__VB_C_CUBOID_M __VB_C_TYPE_RESOLVE_AS__VB_C_CUBOID_M         
-			// #define __VB_C_TYPE_RESOLVE0__VB_C_OF_M(       name, args, mark, ...) __VB_C_TYPE_RESOLVE1##mark((*name __VB_C_ROB(args)), __VA_ARGS__)
-
-			// #define __VB_C_TYPE_RESOLVE1__VB_C_AS_M(name, type, mark, ...) __VB_C_TYPE_RESOLVE1_AS##mark(name, type, __VA_ARGS__)
-			// #define __VB_C_TYPE_RESOLVE1_AS__VB_C_START_M  __VB_C_TYPE_RESOLVE_AS__VB_C_START_M        
-			// #define __VB_C_TYPE_RESOLVE1_AS__VB_C_END_M    __VB_C_TYPE_RESOLVE_AS__VB_C_END_M      
-			// #define __VB_C_TYPE_RESOLVE1_AS__VB_C_ARRAY_M  __VB_C_TYPE_RESOLVE_AS__VB_C_ARRAY_M        
-			// #define __VB_C_TYPE_RESOLVE1_AS__VB_C_MATRIX_M __VB_C_TYPE_RESOLVE_AS__VB_C_MATRIX_M         
-			// #define __VB_C_TYPE_RESOLVE1_AS__VB_C_CUBOID_M __VB_C_TYPE_RESOLVE_AS__VB_C_CUBOID_M         
-			// #define __VB_C_TYPE_RESOLVE1__VB_C_OF_M(name, args, mark, ...) __VB_C_TYPE_RESOLVE2##mark((*name __VB_C_ROB(args)), __VA_ARGS__)
-
-			// #define __VB_C_TYPE_RESOLVE2__VB_C_AS_M(name, type, mark, ...) __VB_C_TYPE_RESOLVE2_AS##mark(name, type, __VA_ARGS__)
-			// #define __VB_C_TYPE_RESOLVE2_AS__VB_C_START_M  __VB_C_TYPE_RESOLVE_AS__VB_C_START_M        
-			// #define __VB_C_TYPE_RESOLVE2_AS__VB_C_END_M    __VB_C_TYPE_RESOLVE_AS__VB_C_END_M      
-			// #define __VB_C_TYPE_RESOLVE2_AS__VB_C_ARRAY_M  __VB_C_TYPE_RESOLVE_AS__VB_C_ARRAY_M        
-			// #define __VB_C_TYPE_RESOLVE2_AS__VB_C_MATRIX_M __VB_C_TYPE_RESOLVE_AS__VB_C_MATRIX_M         
-			// #define __VB_C_TYPE_RESOLVE2_AS__VB_C_CUBOID_M __VB_C_TYPE_RESOLVE_AS__VB_C_CUBOID_M         
-			// #define __VB_C_TYPE_RESOLVE2__VB_C_OF_M(name, args, mark, ...) __VB_C_TYPE_RESOLVE3##mark((*name __VB_C_ROB(args)), __VA_ARGS__)
-
-			// #define __VB_C_TYPE_RESOLVE3__VB_C_AS_M(name, type, mark, ...) __VB_C_TYPE_RESOLVE3_AS##mark(name, type, __VA_ARGS__)
-			// #define __VB_C_TYPE_RESOLVE3_AS__VB_C_START_M  __VB_C_TYPE_RESOLVE_AS__VB_C_START_M        
-			// #define __VB_C_TYPE_RESOLVE3_AS__VB_C_END_M    __VB_C_TYPE_RESOLVE_AS__VB_C_END_M      
-			// #define __VB_C_TYPE_RESOLVE3_AS__VB_C_ARRAY_M  __VB_C_TYPE_RESOLVE_AS__VB_C_ARRAY_M        
-			// #define __VB_C_TYPE_RESOLVE3_AS__VB_C_MATRIX_M __VB_C_TYPE_RESOLVE_AS__VB_C_MATRIX_M         
-			// #define __VB_C_TYPE_RESOLVE3_AS__VB_C_CUBOID_M __VB_C_TYPE_RESOLVE_AS__VB_C_CUBOID_M         
-			// #define __VB_C_TYPE_RESOLVE3__VB_C_OF_M(name, args, mark, ...) __VB_C_TYPE_RESOLVE4##mark((*name __VB_C_ROB(args)), __VA_ARGS__)
-
-			// #define __VB_C_TYPE_RESOLVE4__VB_C_AS_M(name, type, mark, ...) __VB_C_TYPE_RESOLVE4_AS##mark(name, type, __VA_ARGS__)
-			// #define __VB_C_TYPE_RESOLVE4_AS__VB_C_START_M  __VB_C_TYPE_RESOLVE_AS__VB_C_START_M        
-			// #define __VB_C_TYPE_RESOLVE4_AS__VB_C_END_M    __VB_C_TYPE_RESOLVE_AS__VB_C_END_M      
-			// #define __VB_C_TYPE_RESOLVE4_AS__VB_C_ARRAY_M  __VB_C_TYPE_RESOLVE_AS__VB_C_ARRAY_M        
-			// #define __VB_C_TYPE_RESOLVE4_AS__VB_C_MATRIX_M __VB_C_TYPE_RESOLVE_AS__VB_C_MATRIX_M         
-			// #define __VB_C_TYPE_RESOLVE4_AS__VB_C_CUBOID_M __VB_C_TYPE_RESOLVE_AS__VB_C_CUBOID_M         
-			// #define __VB_C_TYPE_RESOLVE4__VB_C_OF_M(name, args, mark, ...) __VB_C_TYPE_RESOLVE5##mark((*name __VB_C_ROB(args)), __VA_ARGS__)
 		// #pragma endregion
-		
-		// this is to disable multiple declaration
-		// because sometimes it would behave wrong
 	// #pragma endregion
 
 	/* CAST(expr AS <TYPE>) */
@@ -617,9 +514,6 @@
 		#define __VB_C_STRUCT__VB_C_END_M(name, _)         typedef struct __VB_C_ROB(name) __VB_C_ROB(name);
 		#define __VB_C_STRUCT__VB_C_ANONYMOUS_M(name, _, start_m, body, ...) struct { __VB_C_ROB(body) }
 		#define __VB_C_STRUCT__VB_C_GENERIC_M( name, _, start_m, body, ...) struct { __VB_C_ROB(body) }
-
-		// #define __VB_C_GENERIC_STRUCT(name, start_mark, body, end_mark) struct { __VB_C_ROB(body) }
-		// #define GENERIC_STRUCT __VB_C_GENERIC_STRUCT __VB_C_LB (
 
 
 		/*
