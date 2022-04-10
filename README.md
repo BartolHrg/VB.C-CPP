@@ -43,6 +43,8 @@ To use VB.C in your program
 4) It is also recommended that you call your file with the .VB.c extension (or .VB.h)  
 so that tools aiming the VB.C can easily find the VB.C code  
   
+It is recommended to compile with `-ftrack-macro-expansion=0` (or 1) option to not get really long error messages full of VB_C macros  
+  
 ## Syntax  
 ### Declarations  
 
@@ -50,27 +52,27 @@ There are 4 forms:
 1) `DECL var AS type END`  
 2) `DECL ptr AS POINTER TO type END` (if the type is not complex, this can be also `DECL ptr AS type* END`)
 3) `DECL arr AS ARRAY OF (type) OF SIZE [m][n]... END` (if the type is not complex, parentheses can be omitted)
-4) `DECL fun AS FUNC OF (args) RETURNING type END` (args can be comma-separated: simple types, `DECL`'d arguments, examples down below)
+4) `DECL fun AS FUNC OF (args) RETURNING type END` (args can be comma-separated: simple types or `DECL`'d arguments, examples down below)
   
 Here, in each of the 4 forms, the type can be simple, or complex.  
 The type being complex means that it is in the form `POINTER TO`, `ARRAY OF`, `FUNC OF`  
-This "recursion" can GO *only* 10 levels deep  
+This "recursion" can go *only* 10 levels deep  
 (therefore, you cannot have `POINTER TO POINTER TO FUNC OF () RETURNING POINTER TO ARRAY OF (ARRAY OF (FUNC OF () RETURNING POINTER TO ARRAY OF (POINTER TO POINTER TO char) OF SIZE [5]) OF SIZE [6]) OF SIZE [7] END`).  
   
 After the `END` keyword, you can type C assignment ` = expr;` or just `;`.  
   
 So, to declare an array of 10 constant pointers to a function, with no arguments, returning char*  
-`DECL farr AS ARRAY OF (FUNC OF () RETURNING char*) OF SIZE [10] END`  
+`DECL farr AS ARRAY OF (FUNC const OF () RETURNING char*) OF SIZE [10] END`  
   
 I recommend you don't declare ARRAY OF ARRAY, because it's not really intuitive.  
 Dimensions get flipped. Equivalent of  
 `DECL mat AS ARRAY OF int OF SIZE [m][n]` is  
-`DECL mat AS ARRAY OF (ARRAY OF int OF SIZE [n]) OF SIZE [m] END`  
+`DECL mat AS ARRAY OF (ARRAY OF int OF SIZE [n]) OF SIZE [m] END` (don't do this)  
   
 ### Type alias (typedef)
   
 Equivalent to the declaration of a variable as type,  
-you typedef type alias as type  
+you **typedef type alias as type**  
 `TYPEDEF VeryOftenUsedFunctionPointer AS FUNC OF (void*, int) RETURNING void END`  
 _(notice, no `;` needed)_  
   
@@ -118,7 +120,7 @@ There can also optionally be multiple `CASE a THEN`s and/or `DEFAULT` at the end
 FORK expr  
 CASE a THEN  
     stmt  
-CASE B+b THEN  
+CASE b THEN  
     stmt  
 DEFAULT  
     stmt  
@@ -246,7 +248,7 @@ cond is, of course, expression.
   
 Each is optional (cond defaults to true) (e.g. `FOR STEP step START...`).  
   
-If body `SKIP`s, step is executed anyway.  
+If body `SKIP`s, step is executed anyway. (it might not if you use plain `continue`)  
 If cond is not met, didn't break *is* executed (because, like with `WHILE`, `COND` is not considered breaking).  
   
 prep, cond, step (but not decl) can be present in other `FOR` forms.  
@@ -263,9 +265,9 @@ START...
 ```  
 This iterates over a given range (from a (including) to b (not including) incremented by inc: a, a+inc, ...).  
 It is invariant to changes of var (which means that you can change var inside the body),  
-and invariant to changes of a, b, inc.  
+and invariant to changes of a, b, inc. (meaning, once yoou start looping, you cannot change bounds)  
 Instead of `UNTIL`, you can write the `TO` keyword, which includes the upper bound.  
-There is also `REVERSED` keyword that flips range (so `RANGE FROM 1 UNTIL 12 BY 3` = (1, 4, 7, 10) becomes `REVERSED RANGE FROM 1 UNTIL 12 BY 3` = (10, 4, 7, 1))
+There is also `REVERSED` keyword that flips range (so `RANGE FROM 1 UNTIL 12 BY 3` = (1, 4, 7, 10) becomes `REVERSED RANGE FROM 1 UNTIL 12 BY 3` = (10, 7, 4, 1))
 (Notice that `RANGE FROM 12 UNTIL 1 BY -3` = (12, 9, 6, 3) is different)
   
 inc can be less than 0, or even equal to 0.  
@@ -391,7 +393,11 @@ For instantiation of arrays, there are
 `REST_ALL_ZEROS` to make other elements of array 0, used like ` = { 1, 5, 8, REST_ALL_ZEROS };`  
   
 When defining macros that use VB.C code, enclose that code in `VB_C_FILE`, so that it is usable even when some other program is not using VB.C.  
-  
+
+It is not standard to prefix your identifiers wit VB_C or __VB_C as it may conflict with VB.H.  
+VB.H might define new keyword that will be ALL CAPS without those prefixes (sorry about that).  
+Which means that it's not really safe to make ALL CAPS identifiers at all, thoug, I believe that migration would be trivial.  
+
 ---  
 
 ## Conclusion  
@@ -429,6 +435,8 @@ I'm planning to remove the required parentheses from `LOOP` and `FOR`
 It would be nice to do the same for `WHILE` and `SKIP_IF`, if MSVC wasn't so uncool.  
   
 I'm planning to add the `FALLTHROUGH` keyword for [FORK CASE](#Control-flow-switch). (again, hard because of MSVC)  
+  
+I'm planning to add VB_C_CODE as synonym for VB_C_FILE (VB_C_FILE wouldn't be deprecated, just not recommended for new code)  
   
 I'm thinking of reviving VB.C++ (that was a thing for a short time during v2 (I think)).  
   
