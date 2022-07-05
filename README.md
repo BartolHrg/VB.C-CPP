@@ -466,7 +466,7 @@ START
     *x = 5;  
 END  
 // iterate over matrix of 2D points, but also get pointers to each x and y member of point  
-FOR() p IN points AS MATRIX OF float OF SIZE (m, n)
+FOR() p IN points AS MATRIX OF Point OF SIZE (m, n)
     PREP  
         DECL x AS float* END = &p->x;  
         DECL y AS float* END = &p->y;  
