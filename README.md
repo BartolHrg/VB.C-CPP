@@ -1,7 +1,6 @@
 # VB.C  
 ## _Visual Basic-like syntax for C_  
 
-[
 [VB.C github](https://github.com/HeliumHe-He/VB.C-CPP)  
   
 Contrary to what the name suggests, it has little to do with actual (Visual) Basic language(s)  
