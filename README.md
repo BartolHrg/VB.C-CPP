@@ -14,7 +14,7 @@ apart from a single header file.
 
 ## How it started  
 
-At first it was just a pair of macros:  
+At first, it was just a pair of macros:  
 ```c  
 #define DECL(var, type) type var  
 #define AS ,  
@@ -32,18 +32,18 @@ Now, you might wonder, why is it all CAPITAL LETTERS:
 
 ## Usage  
   
-_side note: as everything defined by VB.C is ALL CAPS_  
+_side note: as everything defined by VB.C is ALL CAPS_,  
 _in examples in this document, things that are not will be some kind of placeholder (e.g. `expr` for C expression)_  
 
 It compiles with any C compiler  
 To use VB.C in your program  
 1) Copy [VB.H file](https://github.com/HeliumHe-He/VB.C-CPP/blob/main/VB.H) in your project  
 2) `#include` it  
-3) Write `VB_C_CODE(code)` here code should be the any code that uses VB.C (typically the whole file), except for `#includes` (VB_C_FILE is synonym for VB_C_CODE, though it's deprecated (you can leave it in old code))  
+3) Write `VB_C_CODE(code)` here code should be any code that uses VB.C (typically the whole file), except for `#includes` (VB_C_FILE is a synonym for VB_C_CODE, though it's deprecated (you can leave it in old code))  
 4) It is also recommended that you call your file with the .VB.c extension (or .VB.h) (or even .VB.C/.VB.H if you are daring)  
-  so that tools aiming the VB.C can easily find the VB.C code  
+  so that tools aiming at the VB.C can easily find the VB.C code  
   
-It is recommended to compile with `-ftrack-macro-expansion=0` (or 1) option to not get really long error messages full of VB_C macros  
+It is recommended to compile with the `-ftrack-macro-expansion=0` (or 1) option to not get long error messages full of VB_C macros  
   
 ## Syntax  
 ### Declarations  
@@ -53,7 +53,7 @@ There are 4 forms:
 2) `DECL ptr AS qualifier POINTER TO type END` (if the type is not complex, this can be also `DECL ptr AS type* qualifier END`)  
 3) `DECL arr AS (type) ARRAY [m][n]... END` (if the type is not complex, parentheses can be omitted)  
 4) `DECL fun AS qualifier FUNC (args) RETURNING type END` (args can be comma-separated: simple types or `DECL`'d arguments, examples down below)  
-  (if function returns `void`, you can omit `RETURNING type`)  
+  (if a function returns `void`, you can omit `RETURNING type`)  
   
 Here, in each of the 4 forms, the type can be simple, or complex.  
 The type being complex means that it is in the form `POINTER TO`, `ARRAY`, `FUNC`  
@@ -65,7 +65,7 @@ After the `END` keyword, you can type C assignment ` = expr;` or just `;`.
 So, to declare an array of 10 constant pointers to a function, with no arguments, returning char*  
 `DECL farr AS (const FUNC () RETURNING char*) ARRAY [10] END`  
   
-I recommend you don't declare ARRAY OF ARRAY, because it's not really intuitive.  
+I recommend you don't declare ARRAY OF ARRAY, because it's not intuitive.  
 Dimensions get flipped. Equivalent of  
 `DECL mat AS int ARRAY [m][n]` is  
 `DECL mat AS (int ARRAY [n]) ARRAY [m] END` (don't do this)  
@@ -116,7 +116,7 @@ END
 There doesn't need to be break at the end of `stmt`.  
 It is also possible to break out of the outer loop, from inside `stmt` (something that is not possible in C).  
 Each `CASE` defines its own scope, so it is possible to declare variables.  
-There can also optionally be multiple `CASE a THEN`s and/or `DEFAULT` at the end.  
+There can also optionally be multiple `CASE THEN`s and/or `DEFAULT` at the end.  
 ```  
 FORK expr  
 CASE a THEN  
@@ -127,7 +127,7 @@ DEFAULT
     stmt  
 END  
 ```  
-You can use `FALLTHROUGH` keyword to fallthrough to the next case  
+You can use the `FALLTHROUGH` keyword to fallthrough to the next case  
 You can also omit `THEN` to fallthrough  
 ```  
 FORK expr  
@@ -149,8 +149,8 @@ Name can be omitted, but, in MSVC, you maybe can't have more than 1 nameless loo
 
 Loop control flow:  
 - `BREAK(name)` stops the loop execution  
-- `STOP(name)` stops the loop execution, but executes `DIDNT_BREAK` block  
-- `SKIP(name)` skips the rest of the loop body and starts next iteration (but executes `STEP` block)  
+- `STOP(name)` stops the loop execution, but executes the `DIDNT_BREAK` block  
+- `SKIP(name)` skips the rest of the loop body and starts the next iteration (but executes the `STEP` block)  
 
 In each of these name is optional, if omitted, it affects the current loop.  
 
@@ -158,14 +158,14 @@ There are also these loop control flows:
 - `BREAK_IF cond OTHERWISE` equivalent to `FORK IF cond THEN BREAK(); END`  
 - `STOP_IF cond OTHERWISE` equivalent to `FORK IF cond THEN STOP(); END`  
 - `WHILE cond DO` equivalent to `FORK IF !(cond) THEN STOP(); END`  
-  `DO` can be omitted if it is the end of loop (e.g. `LOOP code WHILE cond END`)  
+  `DO` can be omitted if it is the end of the loop (e.g. `LOOP code WHILE cond END`)  
 - `SKIP_IF cond OTHERWISE` equivalent to `FORK IF cond THEN SKIP(); END`  
 
 Loop blocks:  
 - `BEFORE` executed once before loop starts, defines variable scope (that can_t be used outside the loop)  
 - `START` loop body  
 - `STEP` executed after each iteration, even if `SKIP` occurred  
-- `DIDNT_BREAK` executed once after the loop, if loop didn't break  
+- `DIDNT_BREAK` executed once after the loop, if the loop didn't break  
 - `AFTER` executed once after the loop  
 
 example:  
@@ -192,7 +192,7 @@ LOOP(name)
 END  
 ```  
 
-If `LOOP` doesn't have `BEFORE` block, it doesn't need `START` keyword  
+If `LOOP` doesn't have a `BEFORE` block, it doesn't need the `START` keyword  
 otherwise  
 ```  
 LOOP(name)  
@@ -217,18 +217,18 @@ START
     stmt  
 END  
 ```  
-What are `element`, and `type`, and the name of the loop are determined by iterator.  
+What are `element` and `type`, and the name of the loop is determined by the iterator.  
 
 
 #### Iterators  
-Iterator can be custom defined  
+Iterator can be custom-defined  
 VB.C provides `COUNT`, and some array iterators:  
 - `COUNT` numeric iterator  
 - `ARRAY_ITERATOR` iterate through an array  
 - `VOID_ITERATOR`/`VOID_ARRAY_ITERATOR` iterate through void array  
-- `CSTRING_ITERATOR` iterate through null-terminated string  
+- `CSTRING_ITERATOR` iterate through a null-terminated string  
 - `MATRIX_ITERATOR`, `VOID_MATRIX_ITERATOR`, `TENSOR3_ITERATOR`, `VOID_TENSOR3_ITERATOR`  
-- `REVERSED` reverses an iterator, if iterator implements reversing  
+- `REVERSED` reverses an iterator, if the iterator implements reversing  
 
 More about custom iterator implementation in [Custom Iterators](#custom-iterators)  
 
@@ -267,19 +267,19 @@ If `d = 0` and `n` is present, then repeat `a` `n` times.
 The loop name is `elm_ptr`.  
 `elm_ptr` is initialized as `elm_type* const elm_ptr = &arr[i];`  
 Both `i` and `elm_ptr` (pointer, not element inside) are constant.  
-Upper bound is automatically inserted into slice.  
+The upper bound is automatically inserted into the slice.  
 
 ###### VOID ITERATOR  
 Alias: `VOID_ARRAY_ITERATOR`  
 `FOR (i, elm_ptr) IN VOID_ITERATOR(arr, elm_size, size)`  
 `FOR (i, elm_ptr) AS const IN VOID_ITERATOR(arr, elm_size, size SLICED_BY(...))`  
-Same as [ARRAY_ITERATOR](#array-iterator) except type is `void` or `void const` (other qualifiers may be set, like `volatile`).  
+Same as [ARRAY_ITERATOR](#array-iterator) except the type is `void` or `void const` (other qualifiers may be set, like `volatile`).  
 
 ###### C-STRING ITERATOR  
 `FOR (i, elm_ptr) IN CSTRING_ITERATOR(str)`  
 `FOR (i, elm_ptr) AS char const IN CSTRING_ITERATOR(str SLICED_BY(...))`  
 `FOR (i, elm_ptr) AS wchar_t const IN CSTRING_ITERATOR(str)`  
-Same as [ARRAY_ITERATOR](#array-iterator) except size is determined by null-char at the end.  
+Same as [ARRAY_ITERATOR](#array-iterator) except the size is determined by null-char at the end.  
 
 ###### MULTIDIMENSIONAL ARRAY ITERATORS  
 Have non-void and void versions.  
@@ -287,7 +287,7 @@ Have non-void and void versions.
 `FOR ((i, j), elm_ptr) AS elm_type IN MATRIX_ITERATOR(arr, (size_i, size_j))`  
 `FOR ((i, j), elm_ptr) AS elm_type IN MATRIX_ITERATOR(arr, (size_i, size_j) SLICED_BY(COUNT(...), COUNT(...)))`  
 Iterates through contiguous memory.  
-~~Subsequent slices can be dependant on prevoius.~~  
+~~Subsequent slices can be dependent on the previous.~~  
 
 ##### REVERSED  
 Can be applied to all iterators above (even COUNT inside slice).  
@@ -319,7 +319,7 @@ START
     stmt  
 END  
 ```  
-If function returns `void`, `RETURNING void` can be ommitted.  
+If a function returns `void`, `RETURNING void` can be omitted.  
 
 ### Structures  
 
@@ -333,7 +333,7 @@ Struct will be accessible by `name` (and maybe `struct name`) (e.g. `DECL a AS n
   
 You can also declare struct using `STRUCT name END`.  
 You can also use an anonymous struct (e.g. `DECL a AS STRUCT ANONYMOUS members END`).  
-`ANON` is a alias for `ANONYMOUS`.  
+`ANON` is an alias for `ANONYMOUS`.  
 There is also limited support for generics  
 ```  
 #define Array(T, N) VB_C_CODE( STRUCT GENERIC \  
@@ -359,7 +359,7 @@ There is the `RETURN` keyword.
   
 There is the `PASS;` statement as an empty statement (no-operation) (it is not standard to not add `;` after `PASS`)  
   
-There is the `VB_C_LABEL(name, purpose)` macro to get the name of the label (for purpose `SKIP` uses `NEXT`, `WHILE` uses `AFTER` and `BREAK` uses `BREAK`).  
+There is the `VB_C_LABEL(name, purpose)` macro to get the name of the label (for purpose `SKIP` uses `NEXT`, `WHILE` uses `AFTER`, and `BREAK` uses `BREAK`).  
   
 There is the `GLOBAL_PRIVATE` keyword for global functions and variables that aren't accessible outside of the file (actually translation unit, but whatever).  
 Those shouldn't be declared in the header file.  
@@ -376,8 +376,8 @@ For instantiation of arrays, there are
 When defining macros that use VB.C code, enclose that code in `VB_C_CODE`, so that it is usable even when some other program is not using VB.C.  
 
 It is not standard to prefix your identifiers with VB_C or __VB_C as it may conflict with VB.H.  
-VB.H might define new keyword that will be ALL CAPS without those prefixes (sorry about that).  
-Which means that it's not really safe to make ALL CAPS identifiers at all, though, I believe that migration would be trivial.  
+VB.H might define a new keyword that will be ALL CAPS without those prefixes (sorry about that).  
+This means that it's not really safe to make ALL CAPS identifiers at all, though, I believe that migration would be trivial.  
 
 ---  
 
@@ -386,29 +386,29 @@ Which means that it's not really safe to make ALL CAPS identifiers at all, thoug
 I'm not too happy about this project.  
 It made some wonderful things, but it also made some ugly.  
   
-First, every file has to be enclosed by VB_C_CODE, which is really not cool.  
+First, every file has to be enclosed by VB_C_CODE, which is not cool.  
 Something even less cool is that error messages are bad:  
 you get a huge error message because a lot of macros are involved,  
 and you even don't know what line is erroneous, because C macros don't keep newlines (so everything is on the line where VB_C_CODE is)  
   
 This also makes debugging, using tools, not possible.  
   
-I don't really mind the verbosity of the language,  
+I don't mind the verbosity of the language,  
 though it really can be annoying  
 when you have a lot of argument declarations  
 inside already too long function declaration.  
   
 A complaint can be made, that ALL CAPS is not pretty,  
-but I think it even helps to differentiate parts of code  
+but I think it even helps to differentiate parts of the code  
 (of course, I'm actually wrong, there is the syntax highlighting for that).  
   
 And that is another low point of the language:  
-syntax highlight is really trash,  
+syntax highlight is trash,  
 as no VSCode (or other IDE) extensions exist that recognize those keywords.  
-This can be clearly seen even in this file, where no VB.C code is colored.  
+This can be seen even in this file, where no VB.C code is colored.  
   
 IntelliSense support (completions) is limited.  
-CLion actually can offer completions for like members of a `STRUCT`.  
+CLion actually can offer completions for members of a `STRUCT`.  
   
 ## Future  
   
@@ -421,14 +421,14 @@ that you will run on your project root (or a single file?)
 which will transform all .VB.c files in the project into normal C code  
 (but leaving the VB.C source in the comment at the bottom)  
 and back.  
-This can be probably done by running through the preprocessor once, and then formatter.  
+This can be probably done by running through the preprocessor once, and then the formatter.  
 
 Maybe some class-like iterators (using getNext & hasNext methods)  
   
 ## Common patterns  
 
 ```  
-// returns incremented value on each call (first 0, than 1 on next call, then 2, 3, ...)  
+// returns incremented value on each call (first 0, then 1 on next call, then 2, 3, ...)  
 FUNCTION counter OF () RETURNING int  
 START  
     LOCAL_DEFINE_ONCE DECL count AS int END = 0;  
@@ -461,7 +461,7 @@ SKIP_IF !('0' <= c && c <= '9') OTHERWISE
     ...  
 ```  
 ```  
-// finding if any value that meets condition  
+// finding if any value that meets the condition  
 FOR x IN ...  
 START  
     FORK IF cond THEN   
@@ -476,13 +476,13 @@ END
 ## Custom iterators  
 
 Iterator must return `iterator_function, (iterator_args), (iterator_modifiers)`  
-where `iterator_function` is macro function of prototype  
+where `iterator_function` is a macro function of the prototype  
 `(element, type, (iterator_args), (iterator_modifiers)) -> name, (before), (before_step), (before_each), (after_each), (after_step), (didnt_break), (after)`  
 Which will be called with values provided in `FOR element AS type`.  
 `element` will have added parentheses (which can be removed with `__VB_C_RRB_F0` (remove required bracket)).  
-`type` will be in format that is accepted by `__VB_C_TYPE_RESOLVE_F0`
+`type` will be in a format that is accepted by `__VB_C_TYPE_RESOLVE_F0`
 
-For example, let's create simple array iterator  
+For example, let's create a simple array iterator  
 
 ```c  
 /** (arr, size) -> f, args, modifiers */  
