@@ -290,7 +290,8 @@ Iterates through contiguous memory.
 ~~Subsequent slices can be dependent on the previous.~~  
 
 ##### REVERSED  
-Can be applied to all iterators above (even COUNT inside slice).  
+Can be applied to the COUNT, and unsliced array iterators (even COUNT inside slice).  
+It works by appending `__VB_C_REVERSED_M` on the modifiers (note that iterator is free to ignore it).  
 And note that REVERSED COUNT may be different than COUNT with `-d`:  
 `         COUNT(FROM 12 UNTIL 1 BY -3)` = (12, 9, 6, 3)  
 `REVERSED(COUNT(FROM 1 UNTIL 12 BY 3))` = (10, 7, 4, 1)  
@@ -424,6 +425,8 @@ and back.
 This can be probably done by running through the preprocessor once, and then the formatter.  
 
 Maybe some class-like iterators (using getNext & hasNext methods)  
+
+I want to make it possible to apply `REVERSED` twice.  
   
 ## Common patterns  
 
